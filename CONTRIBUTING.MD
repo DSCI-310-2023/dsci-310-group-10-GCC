@@ -1,4 +1,4 @@
-Contributing to <our project name>
+Contributing to `our project name`
 
 Template:
 We welcome all contributions to this project!
@@ -9,4 +9,4 @@ you can fork our repo and submit a pull request.
 We will review pull requests within 7 days.
 All contributors must abide by our [code of conduct](CODE_OF_CONDUCT.md).
 
-[example_short_version]<https://github.com/tidyverse/dplyr/blob/main/.github/CONTRIBUTING.md>
+`example_short_version`<https://github.com/tidyverse/dplyr/blob/main/.github/CONTRIBUTING.md>
