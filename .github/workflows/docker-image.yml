@@ -1,10 +1,11 @@
 name: Docker Image CI - Build and push image 
 
-on:
-  push:
-    paths:
-    - 'Dockerfile'
-    
+on: 
+  push: 
+    branches:
+      - main
+    paths: 
+      - 'Dockerfile'
   workflow_dispatch:
 
 jobs:
