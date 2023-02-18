@@ -18,6 +18,7 @@ according to the lectures' content and any extra relevant resource.
 
 
 ## How to run the project
+- Team Contract: "https://docs.google.com/document/d/1mg8IGLf3wtWFVM-_ZApg03Z35te-7wXVeA3zK4PfNCk/edit#heading=h.kwgdq5on8tby"
 TBD (Dependencies etc)
 
 ## License
