@@ -27,16 +27,17 @@ Clone the project into your local environment using
 `git clone https://github.com/miniatureseal/dsci-310-group-10-GCC.git`
 
 Download the latest docker image of the project using 
-`docker pull miniatureseal/dsci-310-group-10-GCC`
+`docker pull miniatureseal/dsci-310-group-10-GCC:latest`
 
 Then navigate to the root directory of the project and run
-`docker run --r--user root -v $(pwd):/home/jovyan/work -p 8888:8888 dsci-310-group-10-gcc`
+`docker run --r--user root -v $(pwd):/home/jovyan/work -p 8888:8888 miniatureseal/dsci-310-group-10-gcc`
 
 Navigate to `/work/forest_fire_prediction.ipynb` and run the notebook.
 
 
 ### Running the project in the local environment
-To run the project in your local environment you need to have RStudio and R installed. You will need to install the following packages with the specified versions to run it:
+
+To run the project in your local environment you need to have RStudio and R installed. You will need to install the following R packages with the specified versions to run it:
 - `plyr`: 1.1.0
 - `forcats`: 1.0.0
 - `readr`: 2.1.4
@@ -45,12 +46,13 @@ To run the project in your local environment you need to have RStudio and R inst
 - `rsample`: 1.1.1
 - `RColorBrewer`: 1.1.3
 
-For example, you can install RStudio from here: https://posit.co/download/rstudio-desktop/
-In addition, you also need to install Nupyter Notebook. For instructions have a look into the following link:
-https://docs.jupyter.org/en/latest/install/notebook-classic.html
+For example you can install RStudio from [here](https://posit.co/download/rstudio-desktop/).
 
-Now start Jupyter Notebook, navigate to the `forest_fire_prediction.ipynb` file and run it.
+In addition you also need to install jupyter notebook. For instructions have a look into the following [link](https://docs.jupyter.org/en/latest/install/notebook-classic.html)
+
+
+Now start jupyter notebook, navigate to the `forest_fire_prediction.ipynb` file and run it.
 If the steps above were followed as described the notebook should run without any issues.
 
 ## License
-This project is licensed under the MIT license.
+The software provided in this project is offered under the MIT open source license. See the license file for more information.
