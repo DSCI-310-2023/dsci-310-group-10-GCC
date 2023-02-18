@@ -9,27 +9,27 @@ Team Contract: "https://docs.google.com/document/d/1mg8IGLf3wtWFVM-_ZApg03Z35te-
 
 ## Short project summary
 
-Forest fires are a type of uncontrolled and unwanted fire that usually have a negative impact. 
-In 2007, forest fires in the Atlas Mountains, located on the northern coast of Algeria, killed several people as it spread rapidly due to hot, dry winds.
+Forest fires are a type of uncontrolled and unwanted fires that usually have a negative impact. 
+In 2007, forest fires in the Atlas Mountains, located on the northern coast of Algeria, killed several people as they spread rapidly due to hot, dry winds.
 
-In this project, `the problem we're willing to solve` is:
+In this project, ** the problem we're willing to solve ** is:
 - Can we predict forest fires given the weather conditions by using $k$ nearest neighbours? 
 
-For DSCI310 project which based on this previous project created in DSCI100, we intend to realize trustworthy and reproducive workflows
-according to the lectures' content and any extra relevant resource.
+For the DSCI310 project which is based on this previous project created in DSCI100, we intend to realize trustworthy and reproductive workflows
+according to the lectures' content and any extra relevant resources.
 
 
 ## How to run the project
 
 ### Running the project via docker
-To run the project in docker ensure that you have the latests version of docker installed. 
+To run the project in docker ensure that you have the latest version of docker installed. 
 Clone the project into your local environment using 
 `git clone https://github.com/miniatureseal/dsci-310-group-10-GCC.git`
 
 Download the latest docker image of the project using 
 `docker pull miniatureseal/dsci-310-group-10-GCC`
 
-Then naviagte to the root directory of the project and run
+Then navigate to the root directory of the project and run
 `docker run --r--user root -v $(pwd):/home/jovyan/work -p 8888:8888 dsci-310-group-10-gcc`
 
 Navigate to `/work/forest_fire_prediction.ipynb` and run the notebook.
@@ -45,11 +45,11 @@ To run the project in your local environment you need to have RStudio and R inst
 - `rsample`: 1.1.1
 - `RColorBrewer`: 1.1.3
 
-For example you can install RStudio from here: https://posit.co/download/rstudio-desktop/
-In addition you also need to install jupyter notebook. For instructions have a look into the following link:
+For example, you can install RStudio from here: https://posit.co/download/rstudio-desktop/
+In addition, you also need to install Nupyter Notebook. For instructions have a look into the following link:
 https://docs.jupyter.org/en/latest/install/notebook-classic.html
 
-Now start jupyter notebook, navigate to the `forest_fire_prediction.ipynb` file and run it.
+Now start Jupyter Notebook, navigate to the `forest_fire_prediction.ipynb` file and run it.
 If the steps above were followed as described the notebook should run without any issues.
 
 ## License
