@@ -1,10 +1,5 @@
 FROM jupyter/r-notebook:latest
 
-RUN whoami
-RUN pwd
-RUN ls -alh
-
-RUN Rscript -e "print('hello')"
 RUN Rscript -e "install.packages('remotes', repos='http://cran.us.r-project.org')"
 
 RUN Rscript -e "remotes::install_version('dplyr', '1.1.0', repos = 'http://cran.us.r-project.org')"
