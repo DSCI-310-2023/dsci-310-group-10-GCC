@@ -44,7 +44,7 @@ You can freely edit and interact with the notebook.
 
 
 ### Dependencies
-To run the project in your local environment you need to have RStudio 4.1.3 and R installed. The specific versions for the required packages can be found in [https://github.com/miniatureseal/dsci-310-group-10-GCC/blob/main/environment.yml](environment.yml)
+To run the project in your local environment you need to have RStudio 4.1.3 and R installed. The specific versions for the required packages can be found in [environment.yml](https://github.com/miniatureseal/dsci-310-group-10-GCC/blob/main/environment.yml)
 If you are running windows, ensure that you have git bash installed.
 
 You can install RStudio from [here](https://posit.co/download/rstudio-desktop/).
