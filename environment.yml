@@ -1,0 +1,11 @@
+name: forest_fire_prediction_env
+channels:
+  - conda-forge
+dependencies:
+  - r-dplyr=1.1.0
+  - r-forcats=1.0.0
+  - r-readr=2.1.4
+  - r-purrr=1.0.1
+  - r-rsample=1.1.1
+  - r-ggally=2.1.2
+  - r-rcolorbrewer=1.1.3
