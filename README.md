@@ -1,9 +1,9 @@
 # dsci-310-group-10-GCC
 
 ## Contributors
-- [miniatureseal](https://github.com/miniatureseal)
-- [jh22d](https://github.com/jh22d)
-- [Rz02](https://github.com/Rz02)
+- [Jan Zimny](https://github.com/miniatureseal)
+- [Jinghan Xu](https://github.com/jh22d)
+- [Zicheng Zhao](https://github.com/Rz02)
 
 Team Contract: "https://docs.google.com/document/d/1mg8IGLf3wtWFVM-_ZApg03Z35te-7wXVeA3zK4PfNCk/edit#heading=h.kwgdq5on8tby"
 
