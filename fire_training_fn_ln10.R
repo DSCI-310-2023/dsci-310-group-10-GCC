@@ -26,6 +26,7 @@ set.seed(123)
 #'
 #' @param alg    The filtering algorithm which the targeted function
 #' should follow.
+#' @return Return the data filtered by the parameters above.
 fire_training_fn <- function(subset, alg) {
     fire_training <- fire_train %>%
         filter(Classes == subset) %>%
