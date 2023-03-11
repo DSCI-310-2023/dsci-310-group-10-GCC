@@ -10,11 +10,10 @@ Team Contract: "https://docs.google.com/document/d/1mg8IGLf3wtWFVM-_ZApg03Z35te-
 
 ## Short project summary
 
-Forest fires are a type of uncontrolled and unwanted fires that usually have a negative impact. 
-In 2007, forest fires in the Atlas Mountains, located on the northern coast of Algeria, killed several people as they spread rapidly due to hot, dry winds.
+Forest fires are a type of uncontrolled and unwanted fire that usually have a negative impact. In 2007, forest fires in the Atlas Mountains, located on the northern coast of Algeria, killed several people as it spread rapidly due to hot, dry winds.
 
-In this project, ** the problem we're willing to solve ** is:
-- Can we predict forest fires given the weather conditions by using $k$ nearest neighbours? 
+In this project, the main question which we want to answer is:
+Can we predict forest fires given the weather conditions by using k-nearest neighbours?
 
 For the DSCI310 project which is based on this previous project created in DSCI100, we intend to realize trustworthy and reproductive workflows
 according to the lectures' content and any extra relevant resources.
@@ -30,11 +29,13 @@ Clone the project into your local environment using
 Download the latest docker image of the project using 
 `docker pull miniatureseal/dsci-310-group-10-gcc:latest`
 
-Then navigate to the root directory of the project and run on unix based systems or mac:
-`docker run --user root -v $(pwd):/home/jovyan/work -p 8888:8888 miniatureseal/dsci-310-group-10-gcc`
-
-If the volume mounting does not work in windows try this command:
-`docker run --user root -v /$(pwd)://home//jovyan//work -p 8888:8888 miniatureseal/dsci-310-group-10-gcc`
+Then navigate to the root directory of the project using
+`cd dsci-310-group-10-GCC`
+ and then run
+`docker run --rm -it --user root -v $(pwd):/home/jovyan/work -p 8888:8888 miniatureseal/dsci-310-group-10-gcc`
+on unix based systems or mac or
+`docker run --rm -it --user root -v /$(pwd)://home//jovyan//work -p 8888:8888 miniatureseal/dsci-310-group-10-gcc`
+on windows.
 
 Ensure that you run the command in windown from git bash.
 
