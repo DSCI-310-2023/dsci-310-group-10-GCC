@@ -23,18 +23,26 @@ according to the lectures' content and any extra relevant resources.
 
 ### Running the project via docker
 To run the project in docker ensure that you have the [latest version of docker](https://docs.docker.com/get-docker/) installed. 
-Clone the project into your local environment using 
+Clone the project into your local environment using   
+
 `git clone https://github.com/miniatureseal/dsci-310-group-10-GCC.git`
 
-Download the latest docker image of the project using 
+Download the latest docker image of the project using   
+
 `docker pull miniatureseal/dsci-310-group-10-gcc:latest`
 
-Then navigate to the root directory of the project using
-`cd dsci-310-group-10-GCC`
- and then run
-`docker run --rm -it --user root -v $(pwd):/home/jovyan/work -p 8888:8888 miniatureseal/dsci-310-group-10-gcc`
-on unix based systems or mac or
-`docker run --rm -it --user root -v /$(pwd)://home//jovyan//work -p 8888:8888 miniatureseal/dsci-310-group-10-gcc`
+Then navigate to the root directory of the project using  
+
+`cd dsci-310-group-10-GCC`  
+
+ and then run   
+ 
+`docker run --rm -it --user root -v $(pwd):/home/jovyan/work -p 8888:8888 miniatureseal/dsci-310-group-10-gcc`   
+
+on unix based systems or mac or   
+
+`docker run --rm -it --user root -v /$(pwd)://home//jovyan//work -p 8888:8888 miniatureseal/dsci-310-group-10-gcc`   
+
 on windows.
 
 Ensure that you run the command in windown from git bash.
