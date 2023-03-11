@@ -32,7 +32,7 @@ Download the latest docker image of the project using
 Then navigate to the root directory of the project using
 `cd dsci-310-group-10-GCC`
  and then run
-`docker run --user root -v $(pwd):/home/jovyan/work -p 8888:8888 miniatureseal/dsci-310-group-10-gcc`
+`docker run --rm -it --user root -v $(pwd):/home/jovyan/work -p 8888:8888 miniatureseal/dsci-310-group-10-gcc`
 on unix based systems or mac or
 `docker run --rm -it --user root -v /$(pwd)://home//jovyan//work -p 8888:8888 miniatureseal/dsci-310-group-10-gcc`
 on windows.
