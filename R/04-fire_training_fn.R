@@ -2,12 +2,11 @@ library(tidyverse)
 library(tidymodels)
 library(GGally)
 library(here)
-
-source(here("R/04-fire_training_fn.R"))
 library(testthat)
 
-options(repr.matrix.max.rows = 6)
+source(here("R/04-fire_training_fn.R"))
 
+options(repr.matrix.max.rows = 6)
 set.seed(123)
 
 # Copy the dataset from ipynb file for testing
@@ -50,6 +49,5 @@ fire_split <- initial_split(forest_fires, prop = 0.75, strata = Classes)
 fire_train <- training(fire_split)
 
 # Testing
-library(testthat)
 testthat::expect_equal(nrow(fire_training_fn("fire", range)), 2)
 testthat::expect_equal(nrow(fire_training_fn("fire", mean)), 1)
