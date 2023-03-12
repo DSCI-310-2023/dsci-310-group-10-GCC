@@ -7,14 +7,9 @@
 #'
 #' @return A dataframe containing converted numeric columns
 #'
-#' @export
-#'
 #' @example
 #' df1 = data.frame(c_to_n = c('1','2'))
 #' convert_to_num(df1, 'c_to_n')
-
-
-
 convert_to_num <- function(df, cols){
     for (col in cols){
         df[[col]] <- as.numeric(df[[col]])

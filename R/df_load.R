@@ -1,3 +1,4 @@
+source(here("R/convert_to_num.R"))
 #' df_load
 #'
 #' This function load and preprocess a dataset from a CSV file,
@@ -5,7 +6,6 @@
 #' correct the wrong row entries in the second part,
 #' convert the numeric columns into correct data type,
 #' combine the data together.
-#' 
 #'
 #' @param url The quoted URL or file path of the CSV file.
 #' @param skip1 The number of rows to skip at the beginning of the file for the first splited dataset.
@@ -20,23 +20,19 @@
 #' @param predicted_factor The quoted column name to be converted to a factor.
 #'
 #' @return The preprocessed data frame, with missing values corrected and data types converted.
-#'
-#'
-#'
-#' @export
 #‘
 #' @example
-# ' df_load(url = 'https://raw.githubusercontent.com/mwaskom/seaborn-data/master/iris.csv',
-# '         skip1 = 0,
-# '         skip2 = 0,
-# '         n_max1 = 3,
-# '         n_max2 = 2,
-# '         error_line = 2,
-# '         error_record = 2:4,
-# '         correct_bef_error_record = 1,
-# '         val_corrected = list(3.5,1.4,0.2,'setosa'),
-# '         error_col = c('petal_width'),
-# '         predicted_factor = 'species')
+#' df_load(url = 'https://raw.githubusercontent.com/mwaskom/seaborn-data/master/iris.csv',
+#'         skip1 = 0,
+#'         skip2 = 0,
+#'         n_max1 = 3,
+#'         n_max2 = 2,
+#'         error_line = 2,
+#'         error_record = 2:4,
+#'         correct_bef_error_record = 1,
+#'         val_corrected = list(3.5,1.4,0.2,'setosa'),
+#'         error_col = c('petal_width'),
+#'         predicted_factor = 'species')
 
 
 
@@ -46,8 +42,7 @@ df_load <- function(url,skip1, skip2, n_max1, n_max2, error_line, error_record, 
     data2 <- read_csv(url, skip = skip2,n_max = n_max2,col_types = NULL, show_col_types = FALSE)
     
     # correct missing values
-    for (i in error_record)
-    {
+    for (i in error_record) {
         index = i - correct_bef_error_record
         data2[error_line, i] <- val_corrected[index]
     }
