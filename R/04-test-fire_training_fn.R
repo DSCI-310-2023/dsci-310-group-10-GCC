@@ -1,39 +1,14 @@
-library(dplyr)
-library(forcats)
-library(readr)
+library(tidyverse)
+library(tidymodels)
 library(GGally)
-library(purrr)
-library(rsample)
-library(RColorBrewer)
-library(recipes)
-library(parsnip)
-library(tune)
-library(workflows)
-library(yardstick)
 library(here)
+
+source(here('R/04-fire_training_fn.R'))
+library(testthat)
 
 options(repr.matrix.max.rows = 6)
 
 set.seed(123)
-
-#' Fire Training Function
-#'
-#' This function gives a data table depends on the calculation format
-#' (e.g. mean, range, etc.) and the used dataset (e.g. fire_train)
-#'
-#' @param subset The filtering condition which the targeted function
-#' should follow.
-#'
-#' @param alg    The filtering algorithm which the targeted function
-#' should follow.
-#' @return Return the data filtered by the parameters above.
-fire_training_fn <- function(subset, alg) {
-    fire_training <- fire_train %>%
-        filter(Classes == subset) %>%
-        select(Temperature:FWI) %>%
-        map_df(alg)
-    return(fire_training)
-}
 
 # Copy the dataset from ipynb file for testing
 fire_url <- "data/Algerian_forest_fires_dataset_UPDATE.csv"
