@@ -28,7 +28,7 @@ plot_line_graph <- function(data, plot_width, plot_height, x_axis_data,
     stop(paste("missing values for", paste(setdiff(defined, passed), collapse=",
                                            ")))
   }
-  
+
   options(repr.plot.width=plot_width, repr.plot.height=plot_height)
   
   return(ggplot(data, aes(x = {{x_axis_data}}, y = {{y_axis_data}})) +
