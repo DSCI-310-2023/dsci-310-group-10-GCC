@@ -3,7 +3,7 @@ library(tidymodels)
 library(GGally)
 library(here)
 
-source(here('R/fire_training_fn_ln10.R'))
+source(here('R/04-fire_training_fn.R'))
 library(testthat)
 
 options(repr.matrix.max.rows = 6)

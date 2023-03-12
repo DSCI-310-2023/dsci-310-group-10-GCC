@@ -1,4 +1,4 @@
-source(here('R/plot_fn.R'))
+source(here('R/03-plot_fn.R'))
 library(testthat)
 
 # Test plot_line_graph
