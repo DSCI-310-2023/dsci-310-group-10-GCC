@@ -11,7 +11,13 @@ library(purrr)
 #'
 #' @param alg    The filtering algorithm which the targeted function
 #' should follow.
+#'
 #' @return Return the data filtered by the parameters above.
+#'
+#' @export
+#'
+#' @example
+#' fire_training_fn("fire", range)
 fire_training_fn <- function(subset, alg) {
     fire_training <- fire_train %>%
         filter(Classes == subset) %>%

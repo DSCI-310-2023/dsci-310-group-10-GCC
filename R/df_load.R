@@ -21,6 +21,8 @@ source(here("R/convert_to_num.R"))
 #'
 #' @return The preprocessed data frame, with missing values corrected and data types converted.
 #‘
+#' @export
+#' 
 #' @example
 #' df_load(url = 'https://raw.githubusercontent.com/mwaskom/seaborn-data/master/iris.csv',
 #'         skip1 = 0,
@@ -33,9 +35,6 @@ source(here("R/convert_to_num.R"))
 #'         val_corrected = list(3.5,1.4,0.2,'setosa'),
 #'         error_col = c('petal_width'),
 #'         predicted_factor = 'species')
-
-
-
 df_load <- function(url,skip1, skip2, n_max1, n_max2, error_line, error_record, correct_bef_error_record, val_corrected, error_col, predicted_factor){
     # load and split dataset into 2
     data1 <- read_csv(url, skip = skip1, n_max = n_max1, col_types = NULL, show_col_types = FALSE)
@@ -48,13 +47,10 @@ df_load <- function(url,skip1, skip2, n_max1, n_max2, error_line, error_record, 
     }
 
     # correct the datatype 
-    data2 = convert_to_num(df = data2, cols = error_col)
+    data2 <- convert_to_num(df = data2, cols = error_col)
 
     # combine 2 datasats splited
     data <- rbind(data1, data2)%>%mutate(!!predicted_factor := as_factor(!!sym(predicted_factor)))
     
     return(data)
- 
 }
-
-
