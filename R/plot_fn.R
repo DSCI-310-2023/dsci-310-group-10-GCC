@@ -17,6 +17,11 @@ library(ggplot2)
 #'
 #' @return The generated plot
 #'
+#' @export
+#' 
+#' @example 
+#' plot_line_graph(data=accuracies, plot_width=10, plot_height=10, x_axis_data=neighbors, 
+#'                            y_axis_data=mean, x_axis_label="Neighbors", y_axis_label="Accuracy Estimate")
 plot_line_graph <- function(data, plot_width, plot_height, x_axis_data, 
                             y_axis_data, x_axis_label, y_axis_label) {
   # Check if all parameters are passed
@@ -58,6 +63,13 @@ plot_line_graph <- function(data, plot_width, plot_height, x_axis_data,
 #' @param color_label Defines labels for each of the colors
 #'
 #' @return The generated plot
+#'
+#' @export
+#'
+#' @example
+#' plot_scatter_graph(data=fire_train, plot_width=8.9, plot_height=6, x_axis_data=ISI, 
+#'                             y_axis_data=BUI, x_axis_label="Initial Spread Index", y_axis_label="presence of fire", 
+#'                             text_size=20, color=Classes, color_label="presence of fire")
 plot_scatter_graph <- function(data, plot_width, plot_height, x_axis_data, 
                                y_axis_data, x_axis_label, y_axis_label, 
                                text_size, color, color_label) {
