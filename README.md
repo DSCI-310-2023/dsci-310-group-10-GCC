@@ -31,7 +31,7 @@ To run the project in docker, follow the steps below:
     -  `docker run --rm -it --user root -v $(pwd):/home/jovyan/work -p 8888:8888 miniatureseal/dsci-310-group-10-gcc` on unix based systems or mac 
     or  
     -  `docker run --rm -it --user root -v /$(pwd)://home//jovyan//work -p 8888:8888 miniatureseal/dsci-310-group-10-gcc` on windows. Ensure that you run the command in windows from git bash.
-6. See the running message which automatically generated in terminal from the command above. Follow the instructions at the end of the message below the section *To access the server, open this file in a browser:*, i.e., copy a given URL into the browser and navigate to the container.
+6. See the running message which is automatically generated in terminal from the command above. Follow the instructions at the end of the message below the section *To access the server, open this file in a browser:*, i.e., copy a given URL into the browser and navigate to the container.
 7. In teh browser, go to `/work/forest_fire_prediction.ipynb` and run the notebook.
 
 You can freely edit and interact with the notebook.
