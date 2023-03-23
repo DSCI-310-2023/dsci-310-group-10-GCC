@@ -1,5 +1,6 @@
 library(testthat)
-source(here("R/03-plot_fn.R"))
+library(here)
+source(here("../../plot_fn.R"))
 
 # Test plot_line_graph
 synt_data_plot_line_graph <- data.frame(

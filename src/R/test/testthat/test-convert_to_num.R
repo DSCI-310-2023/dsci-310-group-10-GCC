@@ -1,5 +1,6 @@
 library(testthat)
-source(here("R/01-convert_to_num.R"))
+library(here)
+source(here("../../convert_to_num.R"))
 
 # create a data frame to be tested
 df1 <- data.frame(c_to_n = c("1", "2"))

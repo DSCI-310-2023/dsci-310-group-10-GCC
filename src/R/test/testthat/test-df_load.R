@@ -1,6 +1,7 @@
 # test convert_to_num
 library(testthat)
-source(here("R/02-df_load.R"))
+library(here)
+source(here("../../df_load.R"))
 
 # import a data frame to be tested and apply the function to the data frame
 df2_test <- df_load(url = "https://raw.githubusercontent.com/mwaskom/seaborn-data/master/iris.csv",

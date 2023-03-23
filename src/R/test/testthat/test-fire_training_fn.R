@@ -4,7 +4,7 @@ library(GGally)
 library(here)
 library(testthat)
 
-source(here("R/04-fire_training_fn.R"))
+source(here("../../fire_training_fn.R"))
 
 options(repr.matrix.max.rows = 6)
 set.seed(123)
