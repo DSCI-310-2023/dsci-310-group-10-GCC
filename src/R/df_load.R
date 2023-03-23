@@ -45,7 +45,7 @@ df_load <- function(url,skip1, skip2, n_max1, n_max2, error_line, error_record, 
         !is.integer(correct_bef_error_record)) {
         stop("`skip1`, `skip2`, `n_max1`, `n_max2`, `error_line` and `correct_bef_error_record` should be integers")
     }
-    if (!is.string(predicted_factor){
+    if (!is.string(predicted_factor)){
         stop("`predicted_factor` should be a string")
     }
     
