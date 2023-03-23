@@ -1,5 +1,5 @@
 library(here)
-source(here("convert_to_num.R"))
+source(here("src/R/convert_to_num.R"))
 #' df_load
 #'
 #' This function load and preprocess a dataset from a CSV file,
