@@ -1,3 +1,4 @@
+library(here)
 source(here("convert_to_num.R"))
 #' df_load
 #'
@@ -36,6 +37,18 @@ source(here("convert_to_num.R"))
 #'         error_col = c('petal_width'),
 #'         predicted_factor = 'species')
 df_load <- function(url,skip1, skip2, n_max1, n_max2, error_line, error_record, correct_bef_error_record, val_corrected, error_col, predicted_factor){
+    if (!is.integer(skip1)|
+        !is.integer(skip2)|
+        !is.integer(n_max1)|
+        !is.integer(n_max2)|
+        !is.integer(error_line)|
+        !is.integer(correct_bef_error_record)) {
+        stop("`skip1`, `skip2`, `n_max1`, `n_max2`, `error_line` and `correct_bef_error_record` should be integers")
+    }
+    if (!is.string(predicted_factor){
+        stop("`predicted_factor` should be a string")
+    }
+    
     # load and split dataset into 2
     data1 <- read_csv(url, skip = skip1, n_max = n_max1, col_types = NULL, show_col_types = FALSE)
     data2 <- read_csv(url, skip = skip2,n_max = n_max2,col_types = NULL, show_col_types = FALSE)
