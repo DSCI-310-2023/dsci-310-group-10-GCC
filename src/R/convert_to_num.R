@@ -13,6 +13,9 @@
 #' df1 = data.frame(c_to_n = c('1','2'))
 #' convert_to_num(df1, 'c_to_n')
 convert_to_num <- function(df, cols){
+    if (!is.data.frame(df)) {
+        stop("`data_frame` should be a data frame or data frame extension (e.g. a tibble)")
+    }
     for (col in cols){
         df[[col]] <- as.numeric(df[[col]])
     }
