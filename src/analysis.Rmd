@@ -58,7 +58,7 @@ set.seed(123)
 source(here("src/R/convert_to_num.R"))
 source(here("src/R/df_load.R"))
 source(here("src/R/plot_fn.R"))
-source(here("src/R/fire_training_fn.R"))
+source(here("src/R/filter_data.R"))
 ```
 
 # Loading and wrangling the dataset
@@ -122,13 +122,18 @@ fire_training_count
 From this, we know that there is a pretty equal distribution of observations between the two classes. This is a good thing, because it means we don't need any additional steps such as repeating the observations from the class with less observations.
 
 ```{r, echo=FALSE}
-# we calculate some important values: 
-fire_training_range_fire <- fire_training_fn("fire", range)
-fire_training_range_not_fire <- fire_training_fn("not fire", range)
+# we calculate some important values:
+fire_training_range_fire <- filter_data(fire_train, Classes, "fire",
+    Temperature, FWI, range)
+fire_training_range_not_fire <- filter_data(fire_train, Classes, "not fire",
+    Temperature, FWI, range)
 
 #this shows the average values of the numerical columns when there is fire
-fire_training_mean_fire <- fire_training_fn("fire", mean)
-fire_training_mean_not_fire <- fire_training_fn("not fire", mean)
+fire_training_mean_fire <- filter_data(fire_train, Classes, "fire",
+    Temperature, FWI, mean)
+fire_training_mean_not_fire <- filter_data(fire_train, Classes, "not fire",
+    Temperature, FWI, mean)
+
 ```
 
 ```{r, echo=FALSE}

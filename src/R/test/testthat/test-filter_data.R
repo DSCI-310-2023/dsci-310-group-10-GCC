@@ -41,7 +41,7 @@ forest_fires <- forest_fires %>%
     select(Temperature:Classes)
 
 # we'll take 75% of the observations and place it on the training set,
-#    we use the prop = 0.75 argument to do this
+# we use the prop = 0.75 argument to do this
 # we also use the strata argument to set which column will be the
 # prediction variable.
 

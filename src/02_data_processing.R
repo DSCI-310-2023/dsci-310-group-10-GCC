@@ -26,15 +26,15 @@ fire_train <- training(fire_split)
 fire_test <- testing(fire_split)
 
 # we calculate some important values:
-fire_training_range_fire <- fire_training_fn(fire_train, Classes, "fire",
+fire_training_range_fire <- filter_data(fire_train, Classes, "fire",
     Temperature, FWI, range)
-fire_training_range_not_fire <- fire_training_fn(fire_train, Classes, "fire",
+fire_training_range_not_fire <- filter_data(fire_train, Classes, "not fire",
     Temperature, FWI, range)
 
 #this shows the average values of the numerical columns when there is fire
-fire_training_mean_fire <- fire_training_fn(fire_train, Classes, "fire",
+fire_training_mean_fire <- filter_data(fire_train, Classes, "fire",
     Temperature, FWI, mean)
-fire_training_mean_not_fire <- fire_training_fn(fire_train, Classes, "fire",
+fire_training_mean_not_fire <- filter_data(fire_train, Classes, "not fire",
     Temperature, FWI, mean)
 
 write_csv(fire_train, here("results/fire_train.csv"))
