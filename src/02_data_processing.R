@@ -10,8 +10,7 @@ set.seed(123)
 
 
 # Load needed R function files
-source(here("src/R/fire_training_fn.R"))
-
+source(here("src/R/filter_data.R"))
 forest_fires <- read_csv(here("results/forest_fires.csv"))
 
 #We don't want the date columns: our explanation will be given later!
@@ -27,12 +26,16 @@ fire_train <- training(fire_split)
 fire_test <- testing(fire_split)
 
 # we calculate some important values:
-fire_training_range_fire <- fire_training_fn("fire", range)
-fire_training_range_not_fire <- fire_training_fn("not fire", range)
+fire_training_range_fire <- fire_training_fn(fire_train, Classes, "fire",
+    Temperature, FWI, range)
+fire_training_range_not_fire <- fire_training_fn(fire_train, Classes, "fire",
+    Temperature, FWI, range)
 
 #this shows the average values of the numerical columns when there is fire
-fire_training_mean_fire <- fire_training_fn("fire", mean)
-fire_training_mean_not_fire <- fire_training_fn("not fire", mean)
+fire_training_mean_fire <- fire_training_fn(fire_train, Classes, "fire",
+    Temperature, FWI, mean)
+fire_training_mean_not_fire <- fire_training_fn(fire_train, Classes, "fire",
+    Temperature, FWI, mean)
 
 write_csv(fire_train, here("results/fire_train.csv"))
 write_csv(fire_test, here("results/fire_test.csv"))
