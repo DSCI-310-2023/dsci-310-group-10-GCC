@@ -28,13 +28,15 @@ To run the project in docker, follow the steps below:
 3. Download the latest docker image of the project using  `docker pull miniatureseal/dsci-310-group-10-gcc:latest` in Termianl.
 4. Navigate to the root directory of the project using  `cd dsci-310-group-10-GCC` in Terminal.
 5. To run the container for this project, in Terminal, run 
-    -  `docker run --rm -it --user root -v $(pwd):/home/jovyan/work -p 8888:8888 miniatureseal/dsci-310-group-10-gcc` on Unix based systems or Mac 
-    or  
-    -  `docker run --rm -it --user root -v /$(pwd)://home//jovyan//work -p 8888:8888 miniatureseal/dsci-310-group-10-gcc` on Windows. Ensure that you run the command on Windows from git bash.
-6. See the running message which is automatically generated in Terminal from the command above. Follow the instructions at the end of the message below the section *To access the server, open this file in a browser:*, i.e., copy a given URL into the browser and navigate to the container.
-7. In the browser, go to `/work/forest_fire_prediction.ipynb` and run the notebook.
+    - `make run`
+    or if you use Windows and have issues running the command above try
+    - `make run_windows`. Ensure that you run the command on Windows from git bash.
+6. Open up the URL `localhost:8787` in your browser and enter `rstudio` in the user field and `asdf` in the password field.
+7. Now, in the RStudio web application, use the bottom righ panel and navigate into the folder `dsci_project`.
+8. Open up the terminal in the bottom left panel and run `make rmd`. This runs the analysis and generates two output files in the folder `results/final_docs`, one it an `.html` file and the other one a `.pdf` file.
+9. Open the preferred file and read the report.
 
-You can freely edit and interact with the notebook.
+You can freely edit and interact with the code in the docker container.
 
 
 ### Dependencies

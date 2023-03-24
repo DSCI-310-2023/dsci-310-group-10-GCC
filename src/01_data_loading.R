@@ -1,15 +1,30 @@
 library(tidyverse)
 library(here)
+library(docopt)
 
-options(repr.matrix.max.rows = 6)
-set.seed(123)
+doc <- "
+Loads forest fire data from given input directory input_dir, cleans it, 
+and puts it into output directory output_dir
+
+Usage: src/01_data_loading.R --input_dir=<input_dir>  --out_dir=<output_dir> 
+
+Options:
+--input_dir=<input_dir>		Relative path to project root (including filename) 
+to raw data
+--out_dir=<output_dir>		Path to directory relative to project root
+where the results should be saved
+"
+
+opt <- docopt(doc)
+input_dir <- opt[["--input_dir"]]
+output_dir <- opt[["--out_dir"]]
 
 # Source needed R functions
 source(here("src/R/df_load.R"))
 
 # Loading URL
 forest_fires <- df_load(url =
-                        here("data/Algerian_forest_fires_dataset_UPDATE.csv"),
+                        here(input_dir),
                         skip1 = as.integer(1),
                         skip2 = as.integer(126),
                         n_max1 = 122,
@@ -21,4 +36,4 @@ forest_fires <- df_load(url =
                         error_col = c("DC", "FWI"),
                         predicted_factor = "Classes")
 
-write_csv(forest_fires, here("results/forest_fires.csv"))
+write_csv(forest_fires, here(output_dir, "forest_fires.csv"))

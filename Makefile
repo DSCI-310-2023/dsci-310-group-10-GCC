@@ -1,19 +1,28 @@
-forest_fires.csv: src/01_data_loading.R
-	Rscript src/01_data_loading.R
+rmd: results/final_docs/analysis.html results/final_docs/analysis.pdf
 
-fire_test.csv fore_train.csv fire_training_mean_fire.csv fire_training_mean_not_fire.csv fire_training_range_not_fire.csv fire_training_range_fire.csv: src/02_data_processing.R
+results/final_docs/analysis.html results/final_docs/analysis.pdf: src/analysis.Rmd results/forest_fires.csv results/fire_train.csv results/fire_training_range_fire.csv results/fire_training_range_not_fire.csv results/accuracies.csv results/fire_test_predictions.csv results/correlation_graph.png results/scatter_plot.png results/line_plot.png results/classification_regions.png
+	Rscript -e "rmarkdown::render('src/analysis.Rmd', output_dir='results/final_docs', c('bookdown::html_document2', 'bookdown::pdf_document2'))"
+
+results/forest_fires.csv: src/01_data_loading.R
+	Rscript src/01_data_loading.R --input_dir="data/Algerian_forest_fires_dataset_UPDATE.csv" --out_dir="results"
+
+results/fire_test.csv results/fire_train.csv results/fire_training_mean_fire.csv results/fire_training_mean_not_fire.csv results/fire_training_range_not_fire.csv results/fire_training_range_fire.csv: src/02_data_processing.R results/forest_fires.csv
 	Rscript src/02_data_processing.R
 
-correlation_graph.png scatter_plot.png line_plot.png: fire_train.csv fire_test.csv 
-	Rscript src/03_data_visualization.R
+results/accuracies.csv results/fire_test_predictions.csv results/prediction_table.csv: results/fire_train.csv results/fire_test.csv 
+	Rscript src/03_table_generation.R
 
-fire_test_predictions.csv classification_regions.png accuracies.csv:forest_fires.csv
-	Rscript src/04_data_conclusion.R
+results/correlation_graph.png results/scatter_plot.png results/line_plot.png results/classification_regions.png: results/forest_fires.csv results/accuracies.csv results/fire_train.csv results/prediction_table.csv
+	Rscript src/04_data_visualization.R
 
-.PHONY: rstudio
-rstudio:
-	docker run -p 8787:8787 -e PASSWORD="asdf" -v .:/home/rstudio/my_project rocker/rstudio:4.1.3
+.PHONY: run
+run:
+	docker run --rm -it --user root -p 8787:8787 -e PASSWORD="asdf" -v $(pwd):/home/rstudio/dsci_project miniatureseal/dsci-310-group-10-gcc:latest
+
+.PHONY: run_windows
+run_windows:
+	docker run --rm -it --user root -p 8787:8787 -e PASSWORD="asdf" -v /$(pwd)://home//rstudio//dsci_project miniatureseal/dsci-310-group-10-gcc:latest
 
 .PHONY: clean
 clean:
-	rm -rf results
+	find results/ -type f ! -name '.gitkeep' -delete
