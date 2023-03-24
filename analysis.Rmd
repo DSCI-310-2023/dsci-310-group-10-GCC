@@ -68,13 +68,13 @@ After inspecting the dataset, we take the data set's url from [this website](htt
 ```{r, echo=FALSE}
 # Load in the data
 forest_fires <- df_load(url = here("data/Algerian_forest_fires_dataset_UPDATE.csv"),
-                          skip1 = 1,
-                          skip2 = 126,
+                          skip1 = as.integer(1),
+                          skip2 = as.integer(126),
                           n_max1 = 122,
                           n_max2 = Inf,
-                          error_line = 44,
+                          error_line = as.integer(44),
                           error_record = 10:14,
-                          correct_bef_error_record = 9,
+                          correct_bef_error_record = as.integer(9),
                           val_corrected = list("14.6",9,12.5,"10.4","fire"),
                           error_col = c("DC", "FWI"),
                           predicted_factor = "Classes")
