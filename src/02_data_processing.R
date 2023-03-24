@@ -1,12 +1,16 @@
 # This file is responsible for the test and training data split,
 # as well as for some simple statistics on the training data
 library(tidyverse)
-library(GGally)
 library(tidymodels)
 library(here)
 
+# Set seed to ensure consistens split
 options(repr.matrix.max.rows = 6)
 set.seed(123)
+
+
+# Load needed R function files
+source(here("src/R/fire_training_fn.R"))
 
 forest_fires <- read_csv(here("results/forest_fires.csv"))
 

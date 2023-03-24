@@ -1,26 +1,11 @@
 library(tidyverse)
 library(here)
 
-
 options(repr.matrix.max.rows = 6)
-
 set.seed(123)
 
-# R functions
-source(here("src/R/convert_to_num.R"))
+# Source needed R functions
 source(here("src/R/df_load.R"))
-source(here("src/R/plot_fn.R"))
-source(here("src/R/fire_training_fn.R"))
-
-# Packages
-packageVersion("tidyverse")
-packageVersion("GGally")
-packageVersion("tidymodels")
-packageVersion("here")
-packageVersion("testthat")
-packageVersion("kknn")
-
-class(Inf)
 
 # Loading URL
 forest_fires <- df_load(url =
@@ -36,5 +21,4 @@ forest_fires <- df_load(url =
                         error_col = c("DC", "FWI"),
                         predicted_factor = "Classes")
 
-head(forest_fires)
 write_csv(forest_fires, here("results/forest_fires.csv"))
