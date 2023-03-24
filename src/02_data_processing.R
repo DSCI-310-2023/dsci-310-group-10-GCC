@@ -40,7 +40,11 @@ fire_training_mean_not_fire <- filter_data(fire_train, Classes, "not fire",
 write_csv(fire_train, here("results/fire_train.csv"))
 write_csv(fire_test, here("results/fire_test.csv"))
 
-write_csv(fire_training_range_fire, here("results/fire_training_range_fire.csv"))
-write_csv(fire_training_range_not_fire, here("results/fire_training_range_not_fire.csv"))
-write_csv(fire_training_mean_fire, here("results/fire_training_mean_fire.csv"))
-write_csv(fire_training_mean_not_fire, here("results/fire_training_mean_not_fire.csv"))
+write_csv(fire_training_range_fire,
+    here("results/fire_training_range_fire.csv"))
+write_csv(fire_training_range_not_fire,
+    here("results/fire_training_range_not_fire.csv"))
+write_csv(fire_training_mean_fire,
+    here("results/fire_training_mean_fire.csv"))
+write_csv(fire_training_mean_not_fire, 
+    here("results/fire_training_mean_not_fire.csv"))
