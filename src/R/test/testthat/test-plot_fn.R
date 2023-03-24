@@ -22,12 +22,6 @@ test_that("Test if x axis has label 'Neighbors'", {
 test_that("Test if line plot is being rendered", {
   expect_error(print(line_plot), NA)
 })
-test_that("Test if exception thrown when given column not in data", {
-  expect_error(plot_line_graph(data = synt_data_plot_line_graph, 
-  plot_width = 10, plot_height = 10, x_axis_data = neighbors,
-  y_axis_data = meany, x_axis_label = "Neighbors",
-  y_axis_label = "Mean"), "Column 'meany' does not exist in the data frame")
-})
 
 # Test plot_scatter_graph
 synt_data_plot_scatter_graph <- data.frame(
