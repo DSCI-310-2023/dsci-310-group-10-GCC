@@ -4,6 +4,8 @@
 .local/
 .virtual_documents/
 *.pdf
+*.html
+
 # History files
 .Rhistory
 .Rapp.history
@@ -53,3 +55,4 @@ po/*~
 
 # RStudio Connect folder
 rsconnect/
+
