@@ -179,7 +179,7 @@ We hope that in the future, something like this can be used to predict real fire
 
 
 # References
-[1] Faroudja ABID et al. , Predicting Forest Fire in Algeria using Data Mining Techniques: Case Study of the Decision Tree Algorithmâ€, International Conference on Advanced Intelligent Systems for Sustainable Development (AI2SD 2019) , 08 - 11 July , 2019, Marrakech, Morocco.
+[1] Faroudja ABID et al. , Predicting Forest Fire in Algeria using Data Mining Techniques: Case Study of the Decision Tree Algorithms, International Conference on Advanced Intelligent Systems for Sustainable Development (AI2SD 2019) , 08 - 11 July , 2019, Marrakech, Morocco.
 
 [2] Canadian Wildland Fire Information System | Canadian Forest Fire Weather Index (FWI) System, 2021.Retrieved 1 April 2021 from https://cwfis.cfs.nrcan.gc.ca/background/summary/fwi
 

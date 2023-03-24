@@ -17,11 +17,13 @@ results/correlation_graph.png results/scatter_plot.png results/line_plot.png res
 
 .PHONY: run
 run:
-	docker run --rm -it --user root -p 8787:8787 -e PASSWORD="asdf" -v $(pwd):/home/rstudio/dsci_project miniatureseal/dsci-310-group-10-gcc:latest
+	pwd
+	docker run --rm -it --user root -p 8787:8787 -v $$(pwd):/home/rstudio -e PASSWORD="asdf" miniatureseal/dsci-310-group-10-gcc:latest
 
 .PHONY: run_windows
 run_windows:
-	docker run --rm -it --user root -p 8787:8787 -e PASSWORD="asdf" -v /$(pwd)://home//rstudio//dsci_project miniatureseal/dsci-310-group-10-gcc:latest
+	pwd
+	docker run --rm -it --user root -p 8787:8787 -v /$$(pwd)://home//rstudio -e PASSWORD="asdf" miniatureseal/dsci-310-group-10-gcc:latest
 
 .PHONY: clean
 clean:
