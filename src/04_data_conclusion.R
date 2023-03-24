@@ -1,3 +1,14 @@
+# Library
+library(tidyverse)
+library(GGally)
+library(tidymodels)
+library(here)
+library(testthat)
+
+options(repr.matrix.max.rows = 6)
+
+set.seed(123)
+
 # getting the metrics, setting the "real" column to Classes
 # and the predicted column .pred_class
 fire_test_predictions %>%

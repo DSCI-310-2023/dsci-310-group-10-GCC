@@ -1,3 +1,12 @@
+# Library
+library(tidyverse)
+library(GGally)
+library(tidymodels)
+library(here)
+library(testthat)
+
+options(repr.matrix.max.rows = 6)
+
 set.seed(123)
 
 #We don't want the date columns: our explanation will be given later!

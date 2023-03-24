@@ -1,3 +1,12 @@
+# Library
+library(tidyverse)
+library(GGally)
+library(tidymodels)
+library(here)
+library(testthat)
+
+options(repr.matrix.max.rows = 6)
+
 # resize so we can see the plots
 options(repr.plot.width = 20, repr.plot.height = 20)
 # ggpairs was used to do look at our preliminary data analysis,
