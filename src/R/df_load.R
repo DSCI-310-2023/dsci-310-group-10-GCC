@@ -39,13 +39,15 @@ source(here("src/R/convert_to_num.R"))
 df_load <- function(url,skip1, skip2, n_max1, n_max2, error_line, error_record, correct_bef_error_record, val_corrected, error_col, predicted_factor){
     if (!is.integer(skip1)|
         !is.integer(skip2)|
-        !is.integer(n_max1)|
-        !is.integer(n_max2)|
         !is.integer(error_line)|
         !is.integer(correct_bef_error_record)) {
-        stop("`skip1`, `skip2`, `n_max1`, `n_max2`, `error_line` and `correct_bef_error_record` should be integers")
+        stop("`skip1`, `skip2`, `error_line` and `correct_bef_error_record` should be integers")
     }
-    if (!is.string(predicted_factor)){
+    if (!is.numeric(n_max1)|
+        !is.numeric(n_max2)){
+        stop("`n_max1`, `n_max2` should be integers or Inf")
+    }
+    if (!is.character(predicted_factor)){
         stop("`predicted_factor` should be a string")
     }
     

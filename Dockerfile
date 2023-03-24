@@ -1,4 +1,4 @@
-FROM jupyter/r-notebook:latest
+FROM jupyter/r-notebook:r-4.2.3
 
 RUN Rscript -e "install.packages('remotes', repos='http://cran.us.r-project.org')"
 RUN Rscript -e "remotes::install_version('GGally', '2.1.2', repos = 'http://cran.us.r-project.org')"

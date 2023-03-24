@@ -10,7 +10,7 @@ options(repr.matrix.max.rows = 6)
 set.seed(123)
 
 # Copy the dataset from ipynb file for testing
-fire_url <- "data/Algerian_forest_fires_dataset_UPDATE.csv"
+fire_url <- here("data/Algerian_forest_fires_dataset_UPDATE.csv")
 # this takes the bajaja region
 forest_fire_bejaia <- read_csv(fire_url, skip = 1, n_max = 122)
 # this takes the sidi region
