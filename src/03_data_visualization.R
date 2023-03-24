@@ -3,17 +3,13 @@ library(tidyverse)
 library(GGally)
 library(tidymodels)
 library(here)
-library(testthat)
 library(ggplot2)
-#library(plotly)
+
 
 options(repr.matrix.max.rows = 6)
 
-# source("src/01_data_loading.R")
-# source("src/02_data_processing.R")
 source(here("src/R/plot_fn.R"))
 
-setwd("results")
 
 # resize so we can see the plots
 options(repr.plot.width = 20, repr.plot.height = 20)
@@ -25,18 +21,20 @@ options(repr.plot.width = 20, repr.plot.height = 20)
 fire_train <- read.csv(here("results/fire_train.csv"))
 fire_test <- read.csv(here("results/fire_test.csv"))
 
-fire_train_plot <- fire_train %>%
+# fire_train_plot <- fire_train %>%
+#     ggpairs(aes(color = Classes))+ggpar(width = 20, height = 20)
+fire_train_plot <- fire_train %>% 
     ggpairs(aes(color = Classes))
 
 # Saving graph
-# ggsave("fire_train.png", plot = fire_train_plot, device = "png")
+ggsave(here("results/fire_train.png"), plot = fire_train_plot, device = "png", width = 20, height = 20)
 
 scatter_plot <- plot_scatter_graph(data=fire_train, plot_width=8.9, plot_height=6, x_axis_data=ISI, 
                                y_axis_data=BUI, x_axis_label="Initial Spread Index", y_axis_label="presence of fire", 
                                text_size=20, color=Classes, color_label="presence of fire")
               
 # Saving graph
-ggsave("scatter_plot.png", plot = scatter_plot, device = "png")
+ggsave(here("results/scatter_plot.png"), plot = scatter_plot, device = "png")
 
 set.seed(123)
 # making the 10-fold cross validation,
@@ -74,13 +72,13 @@ accuracies <- knn_results %>%
   filter(.metric == "accuracy")
 
 # Save the csv
-write_csv(accuracies, "accuracies.csv")
+write_csv(accuracies, here("results/accuracies.csv"))
 
 line_plot <- plot_line_graph(data=accuracies, plot_width=10, plot_height=10, x_axis_data=neighbors, 
                             y_axis_data=mean, x_axis_label="Neighbors", y_axis_label="Accuracy Estimate")
 
 # Save the graph
-ggsave("line_plot.png", plot = line_plot, device = "png")
+ggsave(here("results/line_plot.png"), plot = line_plot, device = "png")
 
 # we don't need to make a new recipe,
 # since we can reuse the recipe from the last step.
@@ -104,14 +102,4 @@ fire_test_predictions <- predict(knn_fit, fire_test) %>%
   mutate(Classes = as.factor(Classes))
 
 # Save the csv
-write_csv(fire_test_predictions, "fire_test_predictions.csv")
-# getting the confusion matrix,
-# setting the "real" column to Classes and the predicted column .pred_class
-
-# fire_test_predictions_table <- fire_test_predictions %>%
-#   conf_mat(truth = Classes, estimate = .pred_class)
-
-# fire_test_predictions_csv <- as.data.frame.matrix(fire_test_predictions_table)
-
-# # Save the table
-# write_csv(fire_test_predictions_csv, "fire_test_predictions_table.csv")
+write_csv(fire_test_predictions, here("results/fire_test_predictions.csv"))
