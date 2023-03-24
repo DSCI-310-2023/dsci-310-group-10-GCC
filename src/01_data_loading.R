@@ -1,9 +1,6 @@
-# Library
 library(tidyverse)
-library(GGally)
-library(tidymodels)
 library(here)
-library(testthat)
+
 
 options(repr.matrix.max.rows = 6)
 
@@ -40,3 +37,4 @@ forest_fires <- df_load(url =
                         predicted_factor = "Classes")
 
 head(forest_fires)
+write_csv(forest_fires, here("results/forest_fires.csv"))
