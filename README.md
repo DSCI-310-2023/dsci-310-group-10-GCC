@@ -34,22 +34,39 @@ To run the project in docker, follow the steps below:
     - `make run_windows`. Ensure that you run the command on Windows from git bash.
 6. Open up the URL `localhost:8787` in your browser and enter `rstudio` in the user field and `asdf` in the password field.
 7. Now, in the RStudio web application, use the bottom righ panel and navigate into the folder `dsci_project`.
-8. Open up the terminal in the bottom left panel and run `make rmd`. This runs the analysis and generates two output files in the folder `results/`, one is an `.html` file and the other one a `.pdf` file.
+8. Open up the terminal in the bottom left panel and run `make all`. This runs the analysis and generates two output files in the folder `results/`, one is an `.html` file and the other one a `.pdf` file.
 9. Open the preferred file and read the report.
 
 You can freely edit and interact with the code in the docker container.
 
-### Dependencies
+### Running the project locally
 
-To run the project in your local environment you need to have RStudio 4.1.3 and R installed. The specific versions for the required packages can be found in [environment.yml](https://github.com/miniatureseal/dsci-310-group-10-GCC/blob/main/environment.yml)
+To run the project in your local environment you need to have RStudio 4.1.3 and R installed. You will need the following libraries to run the scripts locally:
+
+- tidyverse ‘1.3.1’
+- tidymodels ‘1.0.0’
+- bookdown ‘0.27’
+- markdown ‘1.5’
+- kknn ‘1.3.1’
+- GGally ‘2.1.2’
+- here ‘1.0.1’
+- testthat ‘3.1.4’
+- docopt ‘0.7.1’
+- knitr ‘1.39’
+
 If you are running windows, ensure that you have git bash installed.
 
 You can install RStudio from [here](https://posit.co/download/rstudio-desktop/).
 
-In addition, you also need to install jupyter notebook. For instructions have a look into the following [link](https://docs.jupyter.org/en/latest/install/notebook-classic.html)
+If you have the above packages installed, just run `make all` from the root directory of the project.
 
-Now start jupyter notebook, navigate to the `forest_fire_prediction.ipynb` file and run it.
-If the steps above were followed as described the notebook should run without any issues.
+The make command generates two output files in the folder `results/`, one is an `.html` file and the other one a `.pdf` file.
+
+### Running the test suite
+
+The test suite can be run by running the following command from the root directory of the project:
+
+`Rscript -e "testthat::test_dir('tests/testthat')"`
 
 ## License
 
