@@ -154,11 +154,16 @@ knitr::kable(fire_test_predictions[1:10, ], caption = "Peak into the entries whi
 To get a better picture on how well our model predicted the testing set's classes, we can get the metrics and the confusion matrix:
 
 ```{r, echo=FALSE}
- # getting the confusion matrix, setting the “real” column to Classes and the predicted column .pred_class
+# We kept this code in the analysis file, as it was not possible to save the 
+# result of conf_mat and keep the formatting pretty. Doing it this way ensures 
+# that it is formatted properly. Saving it as a csv led to the following error:
+# Error in write_delim(x, file, delim = ",", na = na, append = append, col_names = col_names: is.data.frame(x) is not TRUE
+# Converting it to a data.frame led to the table not being corretly formatted
 fire_test_predictions$Classes = as.factor(fire_test_predictions$Classes)
 fire_test_predictions$.pred_class = as.factor(fire_test_predictions$.pred_class)
-  fire_test_predictions %>%
+  confusion_matrix <- fire_test_predictions %>%
    yardstick::conf_mat(truth = Classes, estimate = .pred_class)
+  knitr::kable(confusion_matrix$table, caption = "Confusion matrix for test data predictions")
 ```
 From this confusion matrix, we can see that it predicted not fire correctly in 25 cases, predicted fire correctly in 32 cases and predicted incorrectly in only 3 cases. This means that the accuracy of our model might be quite high. Now, we look at the accuracy metrics using the metrics argument:
 
