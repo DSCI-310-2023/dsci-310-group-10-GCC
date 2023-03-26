@@ -83,6 +83,3 @@ In case that a file is missing which would be needed for the analysis you can al
 ## License
 
 The software provided in this project is offered under the MIT open source license. See the license file for more information.
-## License
-
-The software provided in this project is offered under the MIT open source license. See the license file for more information.
