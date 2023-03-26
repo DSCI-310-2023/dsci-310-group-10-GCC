@@ -32,16 +32,15 @@ To run the project in docker, follow the steps below:
     - `make run`
     or if you use Windows and have issues running the command above try
     - `make run_windows`. Ensure that you run the command on Windows from git bash.
-6. Open up the URL `localhost:8787` in your browser and enter `rstudio` in the user field and `asdf` in the password field.
-7. Now, in the RStudio web application, use the bottom right panel and navigate into the folder `dsci_project`.
-8. Open up the terminal in the bottom left panel and run `make all`. This runs the analysis and generates two output files in the folder `results/`, one is an `.html` file and the other one a `.pdf` file.
-9. Open the preferred file and read the report.
+6. Open up the URL `localhost:8787`. You should see a login mask. Enter `rstudio` in the user field and `asdf` in the password field and press login.
+7. Open up the Terminal in the bottom left panel and run `make all`. This runs the analysis and generates two output files in the folder `results/`, one is an `.html` file and the other one a `.pdf` file. Please note that this step may take some time, as libraries for the latex pdf generation need to be loaded in the background.
+8. Open the preferred file in the `/results` folder and read the report.
 
 You can freely edit and interact with the code in the docker container.
 
 ### Running the project locally
 
-To run the project in your local environment you need to have RStudio 4.1.3 and R installed. You will need the following libraries to run the scripts locally:
+To run the project in your local environment you need to have RStudio 4.1.3 and R installed. You will need the following libraries to run everything:
 
 - tidyverse ‘1.3.1’
 - tidymodels ‘1.0.0’
@@ -81,6 +80,9 @@ In case that a file is missing which would be needed for the analysis you can al
 
 - `make <file_name>`: This will generate the needed file with all its dependencies!
 
+## License
+
+The software provided in this project is offered under the MIT open source license. See the license file for more information.
 ## License
 
 The software provided in this project is offered under the MIT open source license. See the license file for more information.
