@@ -163,7 +163,7 @@ fire_test_predictions$Classes = as.factor(fire_test_predictions$Classes)
 fire_test_predictions$.pred_class = as.factor(fire_test_predictions$.pred_class)
   confusion_matrix <- fire_test_predictions %>%
    yardstick::conf_mat(truth = Classes, estimate = .pred_class)
-  knitr::kable(confusion_matrix$table, caption = "Confusion matrix for test data predictions")
+  knitr::kable(confusion_matrix$table, caption = "Matrix for test data predictions")
 ```
 From this confusion matrix, we can see that it predicted not fire correctly in 25 cases, predicted fire correctly in 32 cases and predicted incorrectly in only 3 cases. This means that the accuracy of our model might be quite high. Now, we look at the accuracy metrics using the metrics argument:
 
