@@ -65,7 +65,7 @@ The make command generates two output files in the folder `results/`, one is an 
 
 The test suite can be run by running the following command from the root directory of the project:
 
-`Rscript -e "testthat::test_dir('tests/testthat')"`
+`make test`
 
 ### Makefile details
 
