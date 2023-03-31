@@ -54,8 +54,10 @@ After inspecting the dataset, we take the data set's url from [this website](htt
 
 ```{r forest-fire-head, echo=FALSE, message=FALSE}
 forest_fires <- read_csv(here("results/analysis_data/forest_fires.csv"))
-knitr::kable(forest_fires[1:10, ], caption =
-  "First 10 entries of the forest fire dataset")
+knitr::kable(forest_fires[1:10, ],
+  caption =
+    "First 10 entries of the forest fire dataset"
+)
 ```
 
 # Exploring the dataset 
@@ -71,11 +73,11 @@ The training set takes up `r nrow(fire_train)/nrow(forest_fires)` percent of the
 After making the training set, now we can start exploring the data and decide what predictors to use. Because everything was recorded in 2012, so we don't want to use `day`, `month` and `year`. We removed these columns right before we split the data into the training and testing. Next, we want to try and summarize the data in different ways:
 
 ```{r entries-by-class, echo=FALSE, message=FALSE}
-#this tells us how many entries are on each factor in Classes
+# this tells us how many entries are on each factor in Classes
 
 fire_training_count <- fire_train %>%
-    group_by(Classes) %>%
-    summarise(n = n())
+  group_by(Classes) %>%
+  summarise(n = n())
 
 knitr::kable(fire_training_count, caption = "Entries by class")
 ```
@@ -154,16 +156,16 @@ knitr::kable(fire_test_predictions[1:10, ], caption = "Peak into the entries whi
 To get a better picture on how well our model predicted the testing set's classes, we can get the metrics and the confusion matrix:
 
 ```{r, echo=FALSE}
-# We kept this code in the analysis file, as it was not possible to save the 
-# result of conf_mat and keep the formatting pretty. Doing it this way ensures 
+# We kept this code in the analysis file, as it was not possible to save the
+# result of conf_mat and keep the formatting pretty. Doing it this way ensures
 # that it is formatted properly. Saving it as a csv led to the following error:
 # Error in write_delim(x, file, delim = ",", na = na, append = append, col_names = col_names: is.data.frame(x) is not TRUE
 # Converting it to a data.frame led to the table not being corretly formatted
-fire_test_predictions$Classes = as.factor(fire_test_predictions$Classes)
-fire_test_predictions$.pred_class = as.factor(fire_test_predictions$.pred_class)
-  confusion_matrix <- fire_test_predictions %>%
-   yardstick::conf_mat(truth = Classes, estimate = .pred_class)
-  knitr::kable(confusion_matrix$table, caption = "Matrix for test data predictions")
+fire_test_predictions$Classes <- as.factor(fire_test_predictions$Classes)
+fire_test_predictions$.pred_class <- as.factor(fire_test_predictions$.pred_class)
+confusion_matrix <- fire_test_predictions %>%
+  yardstick::conf_mat(truth = Classes, estimate = .pred_class)
+knitr::kable(confusion_matrix$table, caption = "Matrix for test data predictions")
 ```
 From this confusion matrix, we can see that it predicted not fire correctly in 25 cases, predicted fire correctly in 32 cases and predicted incorrectly in only 3 cases. This means that the accuracy of our model might be quite high. Now, we look at the accuracy metrics using the metrics argument:
 

@@ -25,20 +25,20 @@ forest_fire_sidi[44, 14] <- "fire"
 # because of the parsing error, these columns were saved as
 # <chr> instead of <dbl>. We need to change it back:
 forest_fire_sidi <- forest_fire_sidi %>%
-    mutate(DC = as.numeric(DC)) %>%
-    mutate(FWI = as.numeric(FWI))
+  mutate(DC = as.numeric(DC)) %>%
+  mutate(FWI = as.numeric(FWI))
 
-#combine both datasets together:
+# combine both datasets together:
 forest_fires <- rbind(forest_fire_sidi, forest_fire_bejaia)
 
-#change Classes into a factor because it's the one we want to predict
+# change Classes into a factor because it's the one we want to predict
 forest_fires <- forest_fires %>%
-    mutate(Classes = as_factor(Classes))
+  mutate(Classes = as_factor(Classes))
 
 set.seed(123)
-#W e don't want the date columns: our explanation will be given later!
+# W e don't want the date columns: our explanation will be given later!
 forest_fires <- forest_fires %>%
-    select(Temperature:Classes)
+  select(Temperature:Classes)
 
 # we'll take 75% of the observations and place it on the training set,
 # we use the prop = 0.75 argument to do this
@@ -50,10 +50,14 @@ fire_train <- training(fire_split)
 
 # Testing
 test_that("Test if filter_data returns two rows if alg=range", {
-   expect_equal(nrow(filter_data(fire_train, Classes, "fire",
-    Temperature, FWI, range)), 2)
+  expect_equal(nrow(filter_data(
+    fire_train, Classes, "fire",
+    Temperature, FWI, range
+  )), 2)
 })
 test_that("Test if filter_data returns one rows if alg=mean", {
-   expect_equal(nrow(filter_data(fire_train, Classes, "fire",
-    Temperature, FWI, mean)), 1)
+  expect_equal(nrow(filter_data(
+    fire_train, Classes, "fire",
+    Temperature, FWI, mean
+  )), 1)
 })

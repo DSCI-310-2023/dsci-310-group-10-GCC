@@ -8,10 +8,12 @@ synt_data_plot_line_graph <- data.frame(
   mean = c(0.80, 0.85, 0.95)
 )
 
-line_plot <- plot_line_graph(data = synt_data_plot_line_graph, plot_width = 10,
+line_plot <- plot_line_graph(
+  data = synt_data_plot_line_graph, plot_width = 10,
   plot_height = 10, x_axis_data = neighbors,
   y_axis_data = mean, x_axis_label = "Neighbors",
-  y_axis_label = "Mean")
+  y_axis_label = "Mean"
+)
 
 test_that("Test if y axis has label 'Mean'", {
   expect_identical(line_plot$labels$y, "Mean")
@@ -22,13 +24,17 @@ test_that("Test if x axis has label 'Neighbors'", {
 test_that("Test if line plot is being rendered", {
   expect_error(print(line_plot), NA)
 })
-test_that("Test if error thrown if parameters are missing from line plot 
+test_that("Test if error thrown if parameters are missing from line plot
   function", {
   expected_error <- "missing values for y_axis_label"
-  expect_error(plot_line_graph(data = synt_data_plot_line_graph, plot_width = 10,
-    plot_height = 10, x_axis_data = neighbors, y_axis_data = mean, 
-    x_axis_label = "Neighbors"), 
-    expected_error)
+  expect_error(
+    plot_line_graph(
+      data = synt_data_plot_line_graph, plot_width = 10,
+      plot_height = 10, x_axis_data = neighbors, y_axis_data = mean,
+      x_axis_label = "Neighbors"
+    ),
+    expected_error
+  )
 })
 
 # Test plot_scatter_graph
@@ -38,11 +44,13 @@ synt_data_plot_scatter_graph <- data.frame(
   Classes = c("fire", "fire", "no fire")
 )
 
-scatter_plot <- plot_scatter_graph(data = synt_data_plot_scatter_graph,
+scatter_plot <- plot_scatter_graph(
+  data = synt_data_plot_scatter_graph,
   plot_width = 10, plot_height = 10, x_axis_data = ISI,
   y_axis_data = BUI, x_axis_label = "ISI",
   y_axis_label = "BUI", text_size = 20, color = Classes,
-  color_label = "Presence of fire")
+  color_label = "Presence of fire"
+)
 
 test_that("Test if y axis has label 'BUI'", {
   testthat::expect_identical(scatter_plot$labels$y, "BUI")
@@ -54,13 +62,17 @@ test_that("Test if scatter plot is being rendered", {
   testthat::expect_error(print(scatter_plot), NA)
 })
 
-test_that("Test if error thrown if parameters are missing from scatter plot 
+test_that("Test if error thrown if parameters are missing from scatter plot
   function", {
   expected_error <- "missing values for plot_width"
-  expect_error(plot_scatter_graph(data = synt_data_plot_scatter_graph, 
-    plot_height = 10, x_axis_data = ISI,
-    y_axis_data = BUI, x_axis_label = "ISI",
-    y_axis_label = "BUI", text_size = 20, color = Classes,
-    color_label = "Presence of fire"), 
-  expected_error)
+  expect_error(
+    plot_scatter_graph(
+      data = synt_data_plot_scatter_graph,
+      plot_height = 10, x_axis_data = ISI,
+      y_axis_data = BUI, x_axis_label = "ISI",
+      y_axis_label = "BUI", text_size = 20, color = Classes,
+      color_label = "Presence of fire"
+    ),
+    expected_error
+  )
 })
