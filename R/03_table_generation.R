@@ -27,8 +27,10 @@ fire_recipe <- recipe(Classes ~ ISI + BUI, data = fire_train) %>%
 
 # making the model specification for tuning, setting weight_func to rectangular
 # so that each neighbor has equal "say" and neighbors to tune().
-knn_tune <- nearest_neighbor(weight_func = "rectangular",
-                             neighbors = tune()) %>%
+knn_tune <- nearest_neighbor(
+  weight_func = "rectangular",
+  neighbors = tune()
+) %>%
   set_engine("kknn") %>%
   set_mode("classification")
 

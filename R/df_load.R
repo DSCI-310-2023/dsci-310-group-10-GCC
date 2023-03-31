@@ -33,7 +33,7 @@ source(here("R/convert_to_num.R"))
 #'
 #' @return The preprocessed data frame, with missing values corrected and data
 #' types converted.
-#‘
+# ‘
 #' @export
 #'
 #' @example
@@ -48,38 +48,43 @@ source(here("R/convert_to_num.R"))
 #'         val_corrected = list(3.5,1.4,0.2,'setosa'),
 #'         error_col = c('petal_width'),
 #'         predicted_factor = 'species')
-df_load <- function(url, skip1, skip2, n_max1, n_max2, error_line, error_record,
+df_load <- function(
+    url, skip1, skip2, n_max1, n_max2, error_line, error_record,
     correct_bef_error_record, val_corrected, error_col, predicted_factor) {
-    if (!is.numeric(skip1) |
-        !is.numeric(skip2) |
-        !is.numeric(error_line) |
-        !is.numeric(correct_bef_error_record) |
-        !is.numeric(n_max1) |
-        !is.numeric(n_max2)) {
-        stop("`n_max1`, `n_max2`, `skip1`, `skip2`, `error_line` and 
+  if (!is.numeric(skip1) |
+    !is.numeric(skip2) |
+    !is.numeric(error_line) |
+    !is.numeric(correct_bef_error_record) |
+    !is.numeric(n_max1) |
+    !is.numeric(n_max2)) {
+    stop("`n_max1`, `n_max2`, `skip1`, `skip2`, `error_line` and
             `correct_bef_error_record` should be numeric")
-    }
-    if (!is.character(predicted_factor)){
-        stop("`predicted_factor` should be a string")
-    }
-    # load and split dataset into 2
-    data1 <- read_csv(url, skip = skip1, n_max = n_max1, col_types = NULL,
-        show_col_types = FALSE)
-    data2 <- read_csv(url, skip = skip2,n_max = n_max2,col_types = NULL,
-        show_col_types = FALSE)
+  }
+  if (!is.character(predicted_factor)) {
+    stop("`predicted_factor` should be a string")
+  }
+  # load and split dataset into 2
+  data1 <- read_csv(url,
+    skip = skip1, n_max = n_max1, col_types = NULL,
+    show_col_types = FALSE
+  )
+  data2 <- read_csv(url,
+    skip = skip2, n_max = n_max2, col_types = NULL,
+    show_col_types = FALSE
+  )
 
-    # correct missing values
-    for (i in error_record) {
-        index = i - correct_bef_error_record
-        data2[error_line, i] <- val_corrected[index]
-    }
+  # correct missing values
+  for (i in error_record) {
+    index <- i - correct_bef_error_record
+    data2[error_line, i] <- val_corrected[index]
+  }
 
-    # correct the datatype
-    data2 <- convert_to_num(df = data2, cols = error_col)
+  # correct the datatype
+  data2 <- convert_to_num(df = data2, cols = error_col)
 
-    # combine 2 datasats splited
-    data <- rbind(data1, data2) %>% mutate(!!predicted_factor
-        := as_factor(!!sym(predicted_factor)))
+  # combine 2 datasats splited
+  data <- rbind(data1, data2) %>% mutate(!!predicted_factor
+  := as_factor(!!sym(predicted_factor)))
 
-    return(data)
+  return(data)
 }

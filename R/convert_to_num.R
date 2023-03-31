@@ -14,16 +14,16 @@
 #' df1 = data.frame(c_to_n = c('1','2'))
 #' convert_to_num(df1, 'c_to_n')
 convert_to_num <- function(df, cols) {
-    if (!is.data.frame(df)) {
-        stop("`df` should be a data frame or 
+  if (!is.data.frame(df)) {
+    stop("`df` should be a data frame or
         data frame extension (e.g. a tibble)")
-    }
-    if (!is.vector(cols)) {
-        stop("`cols` should be a vector or a
+  }
+  if (!is.vector(cols)) {
+    stop("`cols` should be a vector or a
         vector extension (e.g. a list)")
-    }
-    for (col in cols){
-        df[[col]] <- as.numeric(df[[col]])
-    }
-    return(df)
+  }
+  for (col in cols) {
+    df[[col]] <- as.numeric(df[[col]])
+  }
+  return(df)
 }
