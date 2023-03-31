@@ -31,4 +31,4 @@ test:
 
 .PHONY: clean
 clean:
-	find results/analysis_data/ -type f ! -name '.gitkeep' -delete
+	find results/ -type f ! -name '.gitkeep' -delete
