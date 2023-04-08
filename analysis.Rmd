@@ -17,7 +17,9 @@ library(tidymodels)
 
 Forest fires are a type of uncontrolled and unwanted fire that usually have a negative impact. In 2007, forest fires in the Atlas Mountains, located on the northern coast of Algeria, killed several people as it spread rapidly due to hot, dry winds  [3].
 In this project, the main question which we want to answer is:
-- Can we predict forest fires given the weather conditions by using k nearest neighbours?
+
+**Can we predict forest fires given the weather conditions by using k nearest neighbours?**
+
 Our dataset contains weather information on the Sidi Bel Abbès and the Bejaia region, and includes information such as:
 
 - `day`, `month`, `year`: the date of the instance
@@ -32,21 +34,20 @@ Our dataset contains weather information on the Sidi Bel Abbès and the Bejaia r
 
 - `Classes`: whether or not there was fire
 
-The data set also includes indexes:
+The data set also includes several components from [Canadian Forest Fire Weather Index (FWI) System](https://cwfis.cfs.nrcan.gc.ca/background/summary/fwi) Components:
 
-- `FFMC`: Fine Fuel Moisture Code
+- `FFMC`: Fine Fuel Moisture Code, measures the moisture content of litter and other cured fine fuels.
 
-- `DMC`: Dull Moisture Code
+- `DMC`: Dull Moisture Code, measures the average moisture content of loosely compacted organic layers of moderate depth.
 
-- `DC`: Drought Code
+- `DC`: Drought Code, measures the average moisture content of deep, compact organic layers.
 
-- `ISI`: Initial Spread Index
+- `ISI`: Initial Spread Index, measures the expected rate of fire spread. It is based on wind speed and FFMC.
 
-- `BUI`: Buildup Index
+- `BUI`: Buildup Index, measures the total amount of fuel available for combustion.
 
-- `FWI`: Fire Weather Index
+- `FWI`: Fire Weather Index, measures fire intensity.
 
-For more information on `FWI`, you can look at [this website](https://cwfis.cfs.nrcan.gc.ca/background/summary/fwi)
 
 # Loading and wrangling the dataset
 The first thing we do is to look at the dataset online, to see what it looks like. At first glance, we can see that this dataset contains headings, and uses commas as a delimiter. Moreover, it seems like each region is stored in a "separate" table on the same dataset. This means that we will need to do some cleaning after we load it to our notebook.
@@ -124,9 +125,13 @@ There is a positive correlation between `ISI` and `BUI`, and there seems to be a
 Now that we know which predictors to use, we can start making our model.
 
 
-# Performing the data analysis
+# Methodology
 
-Because we are trying to predict `Classes`, which is a categorical variable, with `ISI` AND `BUI`, which are quantitative variables, this is a classification problem. So, we can make a k-nearest classification model, using the functions from tidymodels to help us. Before we can make the model, we need to choose a _k_ value that works. So, we need to tune the classifier. 
+This is a classification problem and we use the K-Nearest Neighbor model as we want to classify whether there will be forest fire in 2012 by predict predicting the value if `Classes`. The predictors we choose are  `ISI`, Initial Spread Index, and `BUI`, Buildup Index.
+
+The general rule of thumb of picking a split ratio is the larger the data set, the closer to a 50/50 split ratio. Since we have a relatively small amount of data (less than 250 instances), we will split 75% for the training set, and 25% for the testing set, also following one of the most common split ratios.
+
+Before we can make the model, we need to choose a _k_ value that works. So, we need to tune the classifier. 
 The steps are as follows:
 
 1. We make a 10-fold cross validation, to generate the testing and validation sets. Because our dataset is relatively small, we decided to use 10-fold instead of 5 fold to compensate for the fewer observations.
@@ -137,13 +142,14 @@ The steps are as follows:
 
 4. We add this recipe and model to a `workflow()`, using `collect_metrics()` to get the accuracies of each _k_ value.
 
+# Results
 
 ```{r accuracies-head, echo=FALSE, message=FALSE}
 accuracies <- read_csv(here("results/analysis_data/accuracies.csv"))
 knitr::kable(accuracies[1:10, ], caption = "Accuracies per number of neighbors respected, first ten rows of data")
 ```
 
-Now, we know how accurate our model is for different _k_ values- but since we have 50 values, it's hard to compare all 50 at once! Again, We plot the accuracies so that we can compare the accuracies between each _k_ value in a more efficient and better way.
+Now, we know how accurate our model is for different _k_ values but since we have 50 values, it's hard to compare all 50 at once! Again, We plot the accuracies so that we can compare the accuracies between each _k_ value in a more efficient and better way.
 
 ```{r line-plot, echo=FALSE, out.width="70%", fig.align="center", fig.cap = "Line plot visualizing the accuracy per number of neighbors taken into account while classifying"}
 knitr::include_graphics(here("results/analysis_data/line_plot.png"))
@@ -182,14 +188,28 @@ knitr::include_graphics(here("results/analysis_data/classification_regions.png")
 From this graph, we can conclude that our model works fine - almost all the predictions are accurate. The colors don't seem to look patchy, which means that we didn't underfit this model. most of the observations were predicted correctly too.
 
 
-# Wrapping it all up
 
-In this project, we made a model to predict whether or not there will be a forest fire based on information given at the time of the observation. We found that we could in fact predict the presence of fire with a high accuracy by using a k-nearest classification model and using ISI and BUI as our predictor variables.
-This was what we expected to find, because there had already been a strong relationship between ISI and BUI. Moreover, based on our preliminary data analysis we can already see that in both ISI and BUI, there is a somewhat clear distinction between values when there is or isn't any fire.
+# Discussion
 
-**Expected outcomes and significance:**
+## Result Summary
+In this project, we made a model to predict whether or not there will be a forest fire based on the information given at the time of the observation. We found that we could in fact predict the presence of fire with high accuracy by using a k-nearest classification model and using ISI and BUI as our predictor variables.
 
-We hope that in the future, something like this can be used to predict real fires. Predicting fire will be beneficial because it means we can mobilise firefighters faster, which helps stop the spread of fires. Hopefully, this can also lead to other questions, such as predicting the magnitude of a fire.
+This was what we expected to find because there had already been a strong relationship between ISI and BUI. Moreover, based on our preliminary data analysis we can already see that in both ISI and BUI, there is a somewhat clear distinction between values when there is or isn't any fire.
+
+## Expectation and Impact
+We hope that in the future, some machine learning models like this can be used to predict real fires, given a certain real-time environmental index. The prediction of forest fire will be significantly beneficial to society because according to such a model, people can strengthen the implementation of the precaution for forest fire when the predictors indicate an increased possibility of the fire, spread the fire alarm in advance, especially to the people who are living and working close to the dangerous zone and mobilize firefighters faster if necessary, etc. These all help limit the spread of forest fires efficiently so that many potential losses of lives and finance can be prevented to some degree.
+
+
+## Limitations
+The data set has limited our model set up to some degree, the reasons are as below:
+- The number of records is limited. With only less than 250 observations, it is really hard to apply the model generated from our data set to the real-life scenario since we can not guarantee its accuracy even though our model shows a relabel accuracy in the result after the cross-validation. 
+- The `Year` column shows all the records are valid in 2012 which has been passed for more than 10 years, so the prediction model we generated here would be more suitable to 'find a pattern in the past' instead of 'predict the foreseeable future forest fire'. So if we have our data set to be more up-to-date, the model could be closer to the real-life pattern nowadays and make more sense to the prediction.
+
+Another limitation comes from the K-NN model itself. Given the nature that the K-NN method relies on calculating the distances among the observations, only the numerical variables can be used as the predictor. In fact, many categorical variables in our data set can also be significant predictors and contribute a lot to building the prediction model. 
+
+
+## Further Questions
+As mentioned above, the prediction model can effectively alert people when the possibility of a forest fire is detected. However, it can not specifically address the magnitude of any fire, so in the future study, we can also explore how to effectively build ML models to “predict the magnitude of a fire”.
 
 
 # References
