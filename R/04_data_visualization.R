@@ -46,7 +46,7 @@ wkflw_plot <-
     mapping = aes(x = ISI, y = BUI, color = Classes),
     alpha = 0.02, size = 5.
   ) +
-  labs(color = "IS there fire?") +
+  labs(color = "Is there fire?") +
   scale_color_manual(labels = c(
     "Forest fire present",
     "Forest fire not present"
