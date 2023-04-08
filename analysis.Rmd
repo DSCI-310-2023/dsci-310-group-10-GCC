@@ -17,7 +17,9 @@ library(tidymodels)
 
 Forest fires are a type of uncontrolled and unwanted fire that usually have a negative impact. In 2007, forest fires in the Atlas Mountains, located on the northern coast of Algeria, killed several people as it spread rapidly due to hot, dry winds  [3].
 In this project, the main question which we want to answer is:
-- Can we predict forest fires given the weather conditions by using k nearest neighbours?
+
+**Can we predict forest fires given the weather conditions by using k nearest neighbours?**
+
 Our dataset contains weather information on the Sidi Bel Abbès and the Bejaia region, and includes information such as:
 
 - `day`, `month`, `year`: the date of the instance
@@ -32,21 +34,20 @@ Our dataset contains weather information on the Sidi Bel Abbès and the Bejaia r
 
 - `Classes`: whether or not there was fire
 
-The data set also includes indexes:
+The data set also includes several components from [Canadian Forest Fire Weather Index (FWI) System](https://cwfis.cfs.nrcan.gc.ca/background/summary/fwi) Components:
 
-- `FFMC`: Fine Fuel Moisture Code
+- `FFMC`: Fine Fuel Moisture Code, measures the moisture content of litter and other cured fine fuels.
 
-- `DMC`: Dull Moisture Code
+- `DMC`: Dull Moisture Code, measures the average moisture content of loosely compacted organic layers of moderate depth.
 
-- `DC`: Drought Code
+- `DC`: Drought Code, measures the average moisture content of deep, compact organic layers.
 
-- `ISI`: Initial Spread Index
+- `ISI`: Initial Spread Index, measures the expected rate of fire spread. It is based on wind speed and FFMC.
 
-- `BUI`: Buildup Index
+- `BUI`: Buildup Index, measures the total amount of fuel available for combustion.
 
-- `FWI`: Fire Weather Index
+- `FWI`: Fire Weather Index, measures fire intensity.
 
-For more information on `FWI`, you can look at [this website](https://cwfis.cfs.nrcan.gc.ca/background/summary/fwi)
 
 # Loading and wrangling the dataset
 The first thing we do is to look at the dataset online, to see what it looks like. At first glance, we can see that this dataset contains headings, and uses commas as a delimiter. Moreover, it seems like each region is stored in a "separate" table on the same dataset. This means that we will need to do some cleaning after we load it to our notebook.
@@ -113,9 +114,13 @@ There is a positive correlation between `ISI` and `BUI`, and there seems to be a
 Now that we know which predictors to use, we can start making our model.
 
 
-# Performing the data analysis
+# Methodology
 
-Because we are trying to predict `Classes`, which is a categorical variable, with `ISI` AND `BUI`, which are quantitative variables, this is a classification problem. So, we can make a k-nearest classification model, using the functions from tidymodels to help us. Before we can make the model, we need to choose a _k_ value that works. So, we need to tune the classifier. 
+This is a classification problem and we use the K-Nearest Neighbor model as we want to classify whether there will be forest fire in 2012 by predict predicting the value if `Classes`. The predictors we choose are  `ISI`, Initial Spread Index, and `BUI`, Buildup Index.
+
+The general rule of thumb of picking a split ratio is the larger the data set, the closer to a 50/50 split ratio. Since we have a relatively small amount of data (less than 250 instances), we will split 75% for the training set, and 25% for the testing set, also following one of the most common split ratios.
+
+Before we can make the model, we need to choose a _k_ value that works. So, we need to tune the classifier. 
 The steps are as follows:
 
 1. We make a 10-fold cross validation, to generate the testing and validation sets. Because our dataset is relatively small, we decided to use 10-fold instead of 5 fold to compensate for the fewer observations.
@@ -126,6 +131,7 @@ The steps are as follows:
 
 4. We add this recipe and model to a `workflow()`, using `collect_metrics()` to get the accuracies of each _k_ value.
 
+# Results
 
 ```{r accuracies-head, echo=FALSE, message=FALSE}
 accuracies <- read_csv(here("results/analysis_data/accuracies.csv"))
