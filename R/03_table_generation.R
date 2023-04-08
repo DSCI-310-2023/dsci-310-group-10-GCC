@@ -84,7 +84,22 @@ knn_pred_grid <- predict(knn_fit, asgrid)
 prediction_table <- bind_cols(knn_pred_grid, asgrid) %>%
   rename(Classes = .pred_class)
 
+# The chart that tells us how many entries are on each factor in Classes
+fire_training_count <- fire_train %>%
+  group_by(Classes) %>%
+  summarise(n = n())
+
+# Getting the confusion matrix, setting the "real" column to Classes,
+# and the predicted column .pred_class
+fire_test_predictions$Classes <- as.factor(fire_test_predictions$Classes)
+fire_test_predictions$.pred_class <- as.factor(fire_test_predictions$.pred_class)
+
+confusion_matrix <- fire_test_predictions %>%
+  conf_mat(truth = Classes, estimate = .pred_class)
+
 # Save the generated csvs
 write_csv(accuracies, here("results/analysis_data/accuracies.csv"))
 write_csv(fire_test_predictions, here("results/analysis_data/fire_test_predictions.csv"))
 write_csv(prediction_table, here("results/analysis_data/prediction_table.csv"))
+write_csv(fire_training_count, here("results/analysis_data/fire_training_count.csv"))
+saveRDS(confusion_matrix, here("results/analysis_data/confusion_matrix.rds"))
