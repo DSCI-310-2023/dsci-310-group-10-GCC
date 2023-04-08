@@ -83,7 +83,7 @@ df_load <- function(
   data2 <- convert_to_num(df = data2, cols = error_col)
 
   # combine 2 datasats splited
-  data <- rbind(data1, data2) %>% mutate(!!predicted_factor
+  data <- rbind(data2, data1) %>% mutate(!!predicted_factor
   := as_factor(!!sym(predicted_factor)))
 
   return(data)
