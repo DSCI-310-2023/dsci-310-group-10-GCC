@@ -91,7 +91,18 @@ fire_training_range_not_fire <- read_csv(here("results/analysis_data/fire_traini
 knitr::kable(fire_training_range_not_fire, caption = "Value ranges of data samples which have the class 'not fire'")
 ```
 
-We can see from table 2.2.1 and 2.2.2 that the range of values for Ws is really similar, which is 8-21 and 10-22. Their averages are also really similar, which is 15.42 and 15.725.
+```{r fire-training-mean-fire-head, echo=FALSE, message=FALSE}
+fire_training_mean_fire <- read_csv(here("results/analysis_data/fire_training_mean_fire.csv"))
+knitr::kable(fire_training_mean_fire, caption = "Averages of data samples which have the class 'fire'")
+```
+
+```{r fire-training-mean-no-fire-head, echo=FALSE, message=FALSE}
+fire_training_mean_not_fire <- read_csv(here("results/analysis_data/fire_training_mean_not_fire.csv"))
+knitr::kable(fire_training_mean_not_fire, caption = "Averages of data samples which have the class 'not fire'")
+```
+
+We can see from table 2.2 and 2.3 that the ranges of values for Ws are really similar, which are 8-21 and 6-29. 
+And from table 2.4 and 2.5, we can see that their averages are also really similar, which are 15.41 and 15.72.
 This means that there isn't a clear distinction between the range of values from different Classes- and this also means that their averages are too similar. We don't want to use columns like this, because it's probably not going to be useful in differentiating the Classes. Another column we might not want to use isRH.
 Because it's easier to process visual information, we draw some plots:
 
