@@ -11,14 +11,13 @@ df2_test <- df_load(
   error_col = c("petal_width"), predicted_factor = "species"
 )
 
-
 # define the expected output
 df2_expect <- data.frame(
-  sepal_length = c(5.1, 4.9, 4.7, 5.1, 4.9),
-  sepal_width = c(3.5, 3.0, 3.2, 3.5, 3.5),
-  petal_length = c(1.4, 1.4, 1.3, 1.4, 1.4),
+  sepal_length = c(5.1, 4.9, 5.1, 4.9, 4.7),
+  sepal_width = c(3.5, 3.5, 3.5, 3, 3.2),
+  petal_length = c(1.4, 1.4, 1.4, 1.4, 1.3),
   petal_width = c(0.2, 0.2, 0.2, 0.2, 0.2),
-  species = c("setosa", "setosa", "setosa", "setosa", "setosa")
+  species = c(“setosa”, “setosa”, “setosa”, “setosa”, “setosa”)
 ) %>%
   mutate(species = as_factor(species))
 
