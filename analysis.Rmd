@@ -13,7 +13,6 @@ output:
 library(here)
 library(tidyverse)
 library(tidymodels)
-
 ```
 
 Forest fires are a type of uncontrolled and unwanted fire that usually have a negative impact. In 2007, forest fires in the Atlas Mountains, located on the northern coast of Algeria, killed several people as it spread rapidly due to hot, dry winds  [3].
