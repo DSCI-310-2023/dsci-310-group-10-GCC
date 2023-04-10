@@ -3,15 +3,32 @@
 library(tidyverse)
 library(tidymodels)
 library(here)
+library(docopt)
 
 # Set seed to ensure consistens split
 options(repr.matrix.max.rows = 6)
 set.seed(123)
 
+doc <- "
+Loads forest fire data from given input directory input_dir, cleans it,
+and puts it into output directory output_dir
+
+Usage: src/02_data_processing.R --input_dir=<input_dir>  --out_dir=<output_dir>
+
+Options:
+--input_dir=<input_dir>		Relative path to project root (including filename)
+to raw data
+--out_dir=<output_dir>		Path to directory relative to project root
+where the results should be saved
+"
+
+opt <- docopt(doc)
+input_dir <- opt[["--input_dir"]]
+output_dir <- opt[["--out_dir"]]
 
 # Load needed R function files
 library(FFire)
-forest_fires <- read_csv(here("results/analysis_data/forest_fires.csv"))
+forest_fires <- read_csv(here(input_dir))
 
 # We don't want the date columns: our explanation will be given later!
 forest_fires <- forest_fires %>%
@@ -45,22 +62,22 @@ fire_training_mean_not_fire <- filter_data(
   Temperature, FWI, mean
 )
 
-write_csv(fire_train, here("results/analysis_data/fire_train.csv"))
-write_csv(fire_test, here("results/analysis_data/fire_test.csv"))
+write_csv(fire_train, here(output_dir, "fire_train.csv"))
+write_csv(fire_test, here(output_dir, "fire_test.csv"))
 
 write_csv(
   fire_training_range_fire,
-  here("results/analysis_data/fire_training_range_fire.csv")
+  here(output_dir, "fire_training_range_fire.csv")
 )
 write_csv(
   fire_training_range_not_fire,
-  here("results/analysis_data/fire_training_range_not_fire.csv")
+  here(output_dir, "fire_training_range_not_fire.csv")
 )
 write_csv(
   fire_training_mean_fire,
-  here("results/analysis_data/fire_training_mean_fire.csv")
+  here(output_dir, "fire_training_mean_fire.csv")
 )
 write_csv(
   fire_training_mean_not_fire,
-  here("results/analysis_data/fire_training_mean_not_fire.csv")
+  here(output_dir, "fire_training_mean_not_fire.csv")
 )

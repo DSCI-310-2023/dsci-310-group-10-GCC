@@ -4,11 +4,38 @@ library(tidymodels)
 library(here)
 library(ggplot2)
 library(FFire)
+library(docopt)
 
-forest_fires <- read_csv(here("results/analysis_data/forest_fires.csv"))
-fire_train <- read_csv(here("results/analysis_data/fire_train.csv"))
-accuracies <- read_csv(here("results/analysis_data/accuracies.csv"))
-prediction_table <- read_csv(here("results/analysis_data/prediction_table.csv"))
+doc <- "
+Loads forest fire data from given input directory input_dir, cleans it,
+and puts it into output directory output_dir
+
+Usage: src/04_data_visualization.R --input_dir_load_forest_fire=<input_dir_load_forest_fire> --input_dir_load_fire_train=<input_dir_load_fire_train>  --input_dir_load_accuracies=<input_dir_load_accuracies> --input_dir_prediction_table=<input_dir_prediction_table>  --out_dir=<output_dir>
+
+Options:
+--input_dir_load_forest_fire=<input_dir_load_forest_fire>		
+Relative path to project root (fire_train) to raw data
+--input_dir_load_fire_train=<input_dir_load_fire_train>		
+Relative path to project root (fire_test) to raw data
+--input_dir_load_accuracies=<input_dir_load_accuracies>		
+Relative path to project root (forest_fire) to raw data
+--input_dir_prediction_table=<input_dir_prediction_table>		
+Relative path to project root (forest_fire) to raw data
+--out_dir=<output_dir>		Path to directory relative to project root
+where the results should be saved
+"
+
+opt <- docopt(doc)
+input_dir_load_forest_fire <- opt[["--input_dir_load_forest_fire"]]
+input_dir_load_fire_train <- opt[["--input_dir_load_fire_train"]]
+input_dir_load_accuracies <- opt[["--input_dir_load_accuracies"]]
+input_dir_prediction_table <- opt[["--input_dir_prediction_table"]]
+output_dir <- opt[["--out_dir"]]
+
+forest_fires <- read_csv(here(input_dir_load_forest_fire))
+fire_train <- read_csv(here(input_dir_load_fire_train))
+accuracies <- read_csv(here(input_dir_load_accuracies))
+prediction_table <- read_csv(here(input_dir_prediction_table))
 
 fire_train_plot <- fire_train %>%
   ggpairs(aes(color = Classes))
@@ -52,13 +79,13 @@ wkflw_plot <-
   ), values = cb_palette)
 
 # Saving all the graphs
-ggsave(here("results/analysis_data/classification_regions.png"),
+ggsave(here(output_dir, "classification_regions.png"),
   plot = wkflw_plot,
   device = "png"
 )
-ggsave(here("results/analysis_data/correlation_graph.png"),
+ggsave(here(output_dir, "correlation_graph.png"),
   plot = fire_train_plot,
   device = "png", width = 20, height = 20
 )
-ggsave(here("results/analysis_data/scatter_plot.png"), plot = scatter_plot, device = "png")
-ggsave(here("results/analysis_data/line_plot.png"), plot = line_plot, device = "png")
+ggsave(here(output_dir, "scatter_plot.png"), plot = scatter_plot, device = "png")
+ggsave(here(output_dir, "line_plot.png"), plot = line_plot, device = "png")
