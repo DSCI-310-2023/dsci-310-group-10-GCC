@@ -5,7 +5,9 @@
 .virtual_documents/
 *.pdf
 *.html
-results/
+*.csv
+results/analysis_data
+
 
 # History files
 .Rhistory
