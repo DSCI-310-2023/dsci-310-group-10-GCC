@@ -155,8 +155,8 @@ Now, we know how accurate our model is for different _k_ values but since we hav
 knitr::include_graphics(here("results/analysis_data/line_plot.png"))
 ```
 
-From this graph, we can see the it peaks at about 5/6 and then starts to reduce as _k_ increases. K-nearest model gets slower with larger _k_ values, so we decided that k = 5 would be the most ideal choice for our model, because of its high accuracy estimate and since this estimate doesn't change much when compared to nearby k values.
-This graph also makes sense because we know that small K values tend to have lower accuracies due to underfitting, while large k values will also have lower accuracies due to overfitting. In this graph, accuracies initially increase, and then generally decreases as _k_ values increase.
+From this graph, we can see the it peaks at about 5/6 and then starts to reduce as _k_ increases. K-nearest model gets slower with larger _k_ values, so we decided that _k_ = 5 would be the most ideal choice for our model, because of its high accuracy estimate and since this estimate doesn't change much when compared to nearby _k_ values.
+This graph also makes sense because we know that small _k_ values tend to have lower accuracies due to underfitting, while large _k_ values will also have lower accuracies due to overfitting. In this graph, accuracies initially increase, and then generally decreases as _k_ values increase.
 Now that we know what _k_ value to use, we make a new model specification, this time setting _k_ to 5. We add this new model and the recipe to a workflow.
 
 Now, that we have a model, we can use it to predict the classes on our testing set!
@@ -192,7 +192,7 @@ From this graph, we can conclude that our model works fine - almost all the pred
 # Discussion
 
 ## Result Summary
-In this project, we made a model to predict whether or not there will be a forest fire based on the information given at the time of the observation. We found that we could in fact predict the presence of fire with high accuracy by using a k-nearest classification model and using ISI and BUI as our predictor variables.
+In this project, we made a model to predict whether or not there will be a forest fire based on the information given at the time of the observation. We found that we could in fact predict the presence of fire with high accuracy by using a K-nearest classification model and using ISI and BUI as our predictor variables.
 
 This was what we expected to find because there had already been a strong relationship between ISI and BUI. Moreover, based on our preliminary data analysis we can already see that in both ISI and BUI, there is a somewhat clear distinction between values when there is or isn't any fire.
 
