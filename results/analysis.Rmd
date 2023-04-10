@@ -104,7 +104,7 @@ knitr::kable(fire_training_mean_not_fire, caption = "Averages of data samples wh
 
 We can see from table 2.2 and 2.3 that the ranges of values for Ws are really similar, which are 8-21 and 6-29. 
 And from table 2.4 and 2.5, we can see that their averages are also really similar, which are 15.41 and 15.72.
-This means that there isn't a clear distinction between the range of values from different Classes- and this also means that their averages are too similar. We don't want to use columns like this, because it's probably not going to be useful in differentiating the Classes. Another column we might not want to use isRH.
+This means that there isn't a clear distinction between the range of values from different Classes, and this also means that their averages are too similar. We don't want to use columns like this, because it's probably not going to be useful in differentiating the Classes. Another column we might not want to use isRH.
 Because it's easier to process visual information, we draw some plots:
 
 ```{r correlation-plot, echo=FALSE, out.width="100%", fig.cap = "Correlations between each of the variables in the dataset"}
@@ -155,8 +155,8 @@ Now, we know how accurate our model is for different _k_ values but since we hav
 knitr::include_graphics(here("results/analysis_data/line_plot.png"))
 ```
 
-From this graph, we can see the it peaks at about 5/6 and then starts to reduce as _k_ increases. K-nearest model gets slower with larger _k_ values, so we decided that k = 5 would be the most ideal choice for our model, because of its high accuracy estimate and since this estimate doesn't change much when compared to nearby k values.
-This graph also makes sense because we know that small K values tend to have lower accuracies due to underfitting, while large k values will also have lower accuracies due to overfitting. In this graph, accuracies initially increase, and then generally decreases as _k_ values increase.
+From this graph, we can see the it peaks at about 5/6 and then starts to reduce as _k_ increases. K-nearest model gets slower with larger _k_ values, so we decided that _k_ = 5 would be the most ideal choice for our model, because of its high accuracy estimate and since this estimate doesn't change much when compared to nearby _k_ values.
+This graph also makes sense because we know that small _k_ values tend to have lower accuracies due to underfitting, while large _k_ values will also have lower accuracies due to overfitting. In this graph, accuracies initially increase, and then generally decreases as _k_ values increase.
 Now that we know what _k_ value to use, we make a new model specification, this time setting _k_ to 5. We add this new model and the recipe to a workflow.
 
 Now, that we have a model, we can use it to predict the classes on our testing set!
@@ -185,14 +185,14 @@ From this confusion matrix, we can see that it predicted not fire correctly in 2
 knitr::include_graphics(here("results/analysis_data/classification_regions.png"))
 ```
 
-From this graph, we can conclude that our model works fine - almost all the predictions are accurate. The colors don't seem to look patchy, which means that we didn't underfit this model. most of the observations were predicted correctly too.
+From this graph, we can conclude that our model works fine because almost all the predictions are accurate. The colors don't seem to look patchy, which means that we didn't underfit this model. most of the observations were predicted correctly too.
 
 
 
 # Discussion
 
 ## Result Summary
-In this project, we made a model to predict whether or not there will be a forest fire based on the information given at the time of the observation. We found that we could in fact predict the presence of fire with high accuracy by using a k-nearest classification model and using ISI and BUI as our predictor variables.
+In this project, we made a model to predict whether or not there will be a forest fire based on the information given at the time of the observation. We found that we could in fact predict the presence of fire with high accuracy by using a K-nearest classification model and using ISI and BUI as our predictor variables.
 
 This was what we expected to find because there had already been a strong relationship between ISI and BUI. Moreover, based on our preliminary data analysis we can already see that in both ISI and BUI, there is a somewhat clear distinction between values when there is or isn't any fire.
 
@@ -202,7 +202,9 @@ We hope that in the future, some machine learning models like this can be used t
 
 ## Limitations
 The data set has limited our model set up to some degree, the reasons are as below:
+
 - The number of records is limited. With only less than 250 observations, it is really hard to apply the model generated from our data set to the real-life scenario since we can not guarantee its accuracy even though our model shows a relabel accuracy in the result after the cross-validation. 
+
 - The `Year` column shows all the records are valid in 2012 which has been passed for more than 10 years, so the prediction model we generated here would be more suitable to 'find a pattern in the past' instead of 'predict the foreseeable future forest fire'. So if we have our data set to be more up-to-date, the model could be closer to the real-life pattern nowadays and make more sense to the prediction.
 
 Another limitation comes from the K-NN model itself. Given the nature that the K-NN method relies on calculating the distances among the observations, only the numerical variables can be used as the predictor. In fact, many categorical variables in our data set can also be significant predictors and contribute a lot to building the prediction model. 
