@@ -179,7 +179,7 @@ To get a better picture on how well our model predicted the testing set's classe
 confusion_matrix <- readRDS(here("results/analysis_data/confusion_matrix.rds"))
 knitr::kable(confusion_matrix$table, caption = "Matrix for test data predictions")
 ```
-From this confusion matrix, we can see that it predicted not fire correctly in 25 cases, predicted fire correctly in 32 cases and predicted incorrectly in only 3 cases. This means that the accuracy of our model might be quite high. Now, we look at the accuracy metrics using the metrics argument:
+From this confusion matrix, we can see that it predicted not fire correctly in 26 cases, predicted fire correctly in 33 cases and predicted incorrectly in only 1 case. This means that the accuracy of our model might be quite high. Now, we look at the accuracy metrics using the metrics argument:
 
 ```{r conclusion-plot, echo=FALSE, out.width="70%", fig.align="center", fig.cap = "All training data points and corresponding classification regions"}
 knitr::include_graphics(here("results/analysis_data/classification_regions.png"))
