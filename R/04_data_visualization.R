@@ -3,8 +3,7 @@ library(GGally)
 library(tidymodels)
 library(here)
 library(ggplot2)
-
-source(here("R/plot_fn.R"))
+library(FFire)
 
 forest_fires <- read_csv(here("results/analysis_data/forest_fires.csv"))
 fire_train <- read_csv(here("results/analysis_data/fire_train.csv"))

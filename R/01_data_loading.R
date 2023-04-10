@@ -19,8 +19,8 @@ opt <- docopt(doc)
 input_dir <- opt[["--input_dir"]]
 output_dir <- opt[["--out_dir"]]
 
-# Source needed R functions
-source(here("R/df_load.R"))
+# Loading Package
+library(FFire)
 
 # Loading URL
 forest_fires <- df_load(
