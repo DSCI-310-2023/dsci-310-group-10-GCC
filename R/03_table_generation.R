@@ -4,16 +4,40 @@ library(GGally)
 library(tidymodels)
 library(here)
 library(ggplot2)
+library(docopt)
 
 options(repr.matrix.max.rows = 6)
 
 # resize so we can see the plots
 options(repr.plot.width = 20, repr.plot.height = 20)
 
+doc <- "
+Loads forest fire data from given input directory input_dir, cleans it,
+and puts it into output directory output_dir
+
+Usage: src/03_table_generation.R --input_dir_load_fire_train=<input_dir_load_fire_train> --input_dir_load_fire_test=<input_dir_load_fire_test>  --input_dir_load_forest_fire=<input_dir_load_forest_fire>  --out_dir=<output_dir>
+
+Options:
+--input_dir_load_fire_train=<input_dir_load_fire_train>		
+Relative path to project root (fire_train) to raw data
+--input_dir_load_fire_test=<input_dir_load_fire_test>		
+Relative path to project root (fire_test) to raw data
+--input_dir_load_forest_fire=<input_dir_load_forest_fire>		
+Relative path to project root (forest_fire) to raw data
+--out_dir=<output_dir>		Path to directory relative to project root
+where the results should be saved
+"
+
+opt <- docopt(doc)
+input_dir_load_fire_train <- opt[["--input_dir_load_fire_train"]]
+input_dir_load_fire_test <- opt[["--input_dir_load_fire_test"]]
+input_dir_load_forest_fire <- opt[["--input_dir_load_forest_fire"]]
+output_dir <- opt[["--out_dir"]]
+
 # Load data from previous processing steps
-fire_train <- read.csv(here("results/analysis_data/fire_train.csv"))
-fire_test <- read.csv(here("results/analysis_data/fire_test.csv"))
-forest_fires <- read_csv(here("results/analysis_data/forest_fires.csv"))
+fire_train <- read.csv(here(input_dir_load_fire_train))
+fire_test <- read.csv(here(input_dir_load_fire_test))
+forest_fires <- read_csv(here(input_dir_load_forest_fire))
 
 # making the 10-fold cross validation,
 #    setting the strata (predicted variable) as Classes
@@ -92,14 +116,15 @@ fire_training_count <- fire_train %>%
 # Getting the confusion matrix, setting the "real" column to Classes,
 # and the predicted column .pred_class
 fire_test_predictions$Classes <- as.factor(fire_test_predictions$Classes)
-fire_test_predictions$.pred_class <- as.factor(fire_test_predictions$.pred_class)
+fire_test_predictions$.pred_class <-
+    as.factor(fire_test_predictions$.pred_class)
 
 confusion_matrix <- fire_test_predictions %>%
   conf_mat(truth = Classes, estimate = .pred_class)
 
 # Save the generated csvs
-write_csv(accuracies, here("results/analysis_data/accuracies.csv"))
-write_csv(fire_test_predictions, here("results/analysis_data/fire_test_predictions.csv"))
-write_csv(prediction_table, here("results/analysis_data/prediction_table.csv"))
-write_csv(fire_training_count, here("results/analysis_data/fire_training_count.csv"))
-saveRDS(confusion_matrix, here("results/analysis_data/confusion_matrix.rds"))
+write_csv(accuracies, here(output_dir, "accuracies.csv"))
+write_csv(fire_test_predictions, here(output_dir, "fire_test_predictions.csv"))
+write_csv(prediction_table, here(output_dir, "prediction_table.csv"))
+write_csv(fire_training_count, here(output_dir, "fire_training_count.csv"))
+saveRDS(confusion_matrix, here(output_dir, "confusion_matrix.rds"))
