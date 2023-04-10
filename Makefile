@@ -31,4 +31,4 @@ test:
 
 .PHONY: clean
 clean:
-	find results/ -type f ! -name '.gitkeep' ! -name 'analysis.Rmd' -delete
+	find results/ -type f ! -name '.gitkeep' ! -name 'analysis.Rmd' ! -name 'bibliography.bib' -delete
