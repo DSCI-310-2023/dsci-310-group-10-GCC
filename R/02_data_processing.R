@@ -10,7 +10,7 @@ set.seed(123)
 
 
 # Load needed R function files
-source(here("R/filter_data.R"))
+library(FFire)
 forest_fires <- read_csv(here("results/analysis_data/forest_fires.csv"))
 
 # We don't want the date columns: our explanation will be given later!
