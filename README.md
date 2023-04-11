@@ -74,7 +74,7 @@ The Makefile contains many different commands which can be run. All of the comma
 - `make all`: Runs all the needed scripts to generate the final analysis file. The output reports will be generated in the `results/` folder
 - `make run`: Runs the project in a docker container, so that there is no need to install all the needed dependencies. Only docker is needed! A description how docker can be installed can be found above.
 - `make run_windows`: Same as `make run`, but for windows users. In some cases the `make run` command may run into issues on windows systems. In case that that happens just run this command.
-- `make clean`: Deletes all files in the `/results` folder
+- `make clean`: Deletes all files in the `results/` folder
 
 In case that a file is missing which would be needed for the analysis you can always run:
 
