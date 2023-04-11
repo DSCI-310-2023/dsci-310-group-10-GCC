@@ -25,10 +25,6 @@ run_windows:
 	pwd
 	docker run --rm -it --user root -p 8787:8787 -v /$$(pwd)://home//rstudio -e PASSWORD="asdf" miniatureseal/dsci-310-group-10-gcc:latest
 
-.PHONY: test
-test:
-	Rscript -e "testthat::test_dir('tests/testthat')"
-
 .PHONY: clean
 clean:
 	find results/ -type f ! -name '.gitkeep' ! -name 'analysis.Rmd' ! -name 'bibliography.bib' -delete
