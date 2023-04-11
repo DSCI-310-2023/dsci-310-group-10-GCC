@@ -24,7 +24,7 @@ according to the lectures' content and any extra relevant resources.
 
 To run the project in docker, follow the steps below:
 
-1. Ensure that you have the [latest version of docker](https://docs.docker.com/get-docker/) installed.
+1. Ensure that you have the [latest version of docker](https://docs.docker.com/get-docker/) installed. Run docker.
 2. Clone the project into your local environment using `git clone https://github.com/miniatureseal/dsci-310-group-10-GCC.git` in Terminal.
 3. Download the latest docker image of the project using  `docker pull miniatureseal/dsci-310-group-10-gcc:latest` in Terminal.
 4. Navigate to the root directory of the project using  `cd dsci-310-group-10-GCC` in Terminal.
