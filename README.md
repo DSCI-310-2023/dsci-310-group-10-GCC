@@ -51,7 +51,7 @@ To run the project in your local environment you need to have RStudio 4.1.3 and 
 - here ‘1.0.1’
 - docopt ‘0.7.1’
 - knitr ‘1.39’
-- FFire ‘0.0.1’
+- FFire ‘0.1.0’
 
 If you are running windows, ensure that you have git bash installed.
 
