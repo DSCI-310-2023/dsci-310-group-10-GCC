@@ -7,4 +7,4 @@ RUN Rscript -e "remotes::install_version('here', '1.0.1', repos = 'http://cran.u
 RUN Rscript -e "remotes::install_version('kknn', '1.3.1', repos = 'http://cran.us.r-project.org')"
 RUN Rscript -e "remotes::install_version('markdown', '1.5', repos = 'http://cran.us.r-project.org')"
 RUN Rscript -e "remotes::install_version('tidymodels', '1.0.0', repos = 'http://cran.us.r-project.org')"
-RUN Rscript -e "devtools::install_github('DSCI-310/dsci-310-group-10-GCC-pkg')"
+RUN Rscript -e "devtools::install_github('DSCI-310/dsci-310-group-10-GCC-pkg@0.1.0')"
