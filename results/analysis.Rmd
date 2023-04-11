@@ -105,8 +105,8 @@ fire_training_mean_not_fire <- read_csv(here("results/analysis_data/fire_trainin
 knitr::kable(fire_training_mean_not_fire, caption = "Averages of data samples which have the class 'not fire'")
 ```
 
-We can see from table \@ref(tab:fire-training-range-fire-head) and \@ref(tab:fire-training-range-no-fire-head) that the ranges of values for Ws are really similar, which are 8-21 and 6-29. 
-And from table \@ref(tab:fire-training-mean-fire-head) and \@ref(tab:fire-training-mean-no-fire-head), we can see that their averages are also really similar, which are 15.41 and 15.72.
+We can see from Table \@ref(tab:fire-training-range-fire-head) and \@ref(tab:fire-training-range-no-fire-head) that the ranges of values for Ws are really similar, which are 8-21 and 6-29. 
+And from Table \@ref(tab:fire-training-mean-fire-head) and \@ref(tab:fire-training-mean-no-fire-head), we can see that their averages are also really similar, which are 15.41 and 15.72.
 This means that there isn't a clear distinction between the range of values from different Classes, and this also means that their averages are too similar. We don't want to use columns like this, because it's probably not going to be useful in differentiating the Classes. Another column we might not want to use is RH.
 Because it's easier to process visual information, and the correlations, we visualize them in Figure \@ref(fig:correlation-plot).
 
