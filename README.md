@@ -49,7 +49,6 @@ To run the project in your local environment you need to have RStudio 4.1.3 and 
 - kknn ‘1.3.1’
 - GGally ‘2.1.2’
 - here ‘1.0.1’
-- testthat ‘3.1.4’
 - docopt ‘0.7.1’
 - knitr ‘1.39’
 
@@ -61,12 +60,6 @@ If you have the above packages installed, just run `make all` from the root dire
 
 The make command generates two output files in the folder `results/`, one is an `.html` file and the other one a `.pdf` file.
 
-### Running the test suite
-
-The test suite can be run by running the following command from the root directory of the project:
-
-`make test`
-
 ### Makefile details
 
 The Makefile contains many different commands which can be run. All of the commands should be run from the root directory of the project. These three are of most interest:
@@ -74,7 +67,7 @@ The Makefile contains many different commands which can be run. All of the comma
 - `make all`: Runs all the needed scripts to generate the final analysis file. The output reports will be generated in the `results/` folder
 - `make run`: Runs the project in a docker container, so that there is no need to install all the needed dependencies. Only docker is needed! A description how docker can be installed can be found above.
 - `make run_windows`: Same as `make run`, but for windows users. In some cases the `make run` command may run into issues on windows systems. In case that that happens just run this command.
-- `make clean`: Deletes all files in the `results/` folder
+- `make clean`: Deletes all irrelevant files in the `results/` folder
 
 In case that a file is missing which would be needed for the analysis you can always run:
 
